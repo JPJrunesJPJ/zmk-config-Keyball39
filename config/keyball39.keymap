@@ -10,47 +10,19 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-// Layer definitions - Home Row Mods version
-#define HRM_BASE 0
-#define HRM_NAV  1
-#define HRM_NUM  2
-#define HRM_SYM  3
-#define HRM_FUN  4
+// Layer definitions
+#define BASE     0
+#define NAV      1
+#define NUM      2
+#define SYM      3
+#define FUN      4
+#define BASE_OSM 5
+#define NAV_OSM  6
+#define NUM_OSM  7
+#define SYM_OSM  8
+#define FUN_OSM  9
+#define ADJ     10
 
-// Layer definitions - One Shot Mods version
-#define OSM_BASE 5
-#define OSM_NAV  6
-#define OSM_NUM  7
-#define OSM_SYM  8
-#define OSM_FUN  9
-
-// Mirror layers for one-handed use
-#define HRM_BASE_MIRROR 10
-#define HRM_NAV_MIRROR  11
-#define HRM_NUM_MIRROR  12
-#define HRM_SYM_MIRROR  13
-#define HRM_FUN_MIRROR  14
-
-#define OSM_BASE_MIRROR 15
-#define OSM_NAV_MIRROR  16
-#define OSM_NUM_MIRROR  17
-#define OSM_SYM_MIRROR  18
-#define OSM_FUN_MIRROR  19
-
-// Adjustment layer
-#define ADJ 20
-
-// Home row mod aliases (Miryoku-style)
-#define HRML(k1,k2,k3,k4) &hml LGUI k1  &hml LALT k2  &hml LCTRL k3  &hml LSHFT k4
-#define HRMR(k1,k2,k3,k4) &hmr RSHFT k1  &hmr RCTRL k2  &hmr RALT k3  &hmr RGUI k4
-
-// One shot mod aliases
-#define OSM_LSFT &osm LSHFT
-#define OSM_LCTL &osm LCTRL
-#define OSM_LALT &osm LALT
-#define OSM_LGUI &osm LGUI
-
-// Apply timing settings to built-in behaviors
 &lt {
     tapping-term-ms = <240>;
     flavor = "balanced";
@@ -68,437 +40,161 @@
 };
 
 / {
-    behaviors {
-        // Home row mods - left hand
-        hml: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS_LEFT";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33 34 35 36 37 38>;
-            hold-trigger-on-release;
-        };
-
-        // Home row mods - right hand
-        hmr: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS_RIGHT";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35 36 37 38>;
-            hold-trigger-on-release;
-        };
-
-        // Layer tap with longer hold time for thumbs
-        ltl: layer_tap_long {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_LONG";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
-        };
-
-        // One shot mods with longer timeout
-        osm: one_shot_mod {
-            compatible = "zmk,behavior-one-shot";
-            label = "ONE_SHOT_MOD";
-            #binding-cells = <1>;
-            release-after-ms = <2000>;
-        };
-
-        // One shot layer
-        osl: one_shot_layer {
-            compatible = "zmk,behavior-one-shot";
-            label = "ONE_SHOT_LAYER";
-            #binding-cells = <1>;
-            release-after-ms = <2000>;
-        };
-
-        // Tap dance for parentheses/brackets
-        td_par: tap_dance_parentheses {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_PARENTHESES";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LPAR>, <&kp LBKT>, <&kp LBRC>;
-        };
-
-        td_par_close: tap_dance_parentheses_close {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_PARENTHESES_CLOSE";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp RPAR>, <&kp RBKT>, <&kp RBRC>;
-        };
-
-        // Smart shift (caps word on double tap)
-        smart_shft: smart_shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "SMART_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&sk LSHFT>, <&caps_word>;
-            mods = <(MOD_LSFT)>;
-        };
-
-        // Mode switcher behavior
-        mode_switch: mode_switch {
-            compatible = "zmk,behavior-tap-dance";
-            label = "MODE_SWITCH";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&to OSM_BASE>, <&to HRM_BASE>;
-        };
-
-        // Mirror layer momentary hold
-        mirror_hold: mirror_hold {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MIRROR_HOLD";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <150>;
-            quick-tap-ms = <100>;
-        };
-    };
-
     combos {
         compatible = "zmk,combos";
         
-        // Mode switching combo (left pinky + ring)
-        combo_mode_switch {
-            timeout-ms = <50>;
-            key-positions = <10 11>;
-            bindings = <&mode_switch>;
-            layers = <HRM_BASE OSM_BASE>;
-        };
-
-        // Escape on jk (works across both base modes)
-        combo_esc_hrm {
+        combo_esc {
             timeout-ms = <50>;
             key-positions = <16 17>;
             bindings = <&kp ESC>;
-            layers = <HRM_BASE>;
         };
 
-        combo_esc_osm {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&kp ESC>;
-            layers = <OSM_BASE>;
-        };
-
-        // Tab on qw
-        combo_tab_hrm {
+        combo_tab {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
-            layers = <HRM_BASE>;
         };
 
-        combo_tab_osm {
-            timeout-ms = <50>;
-            key-positions = <0 1>;
-            bindings = <&kp TAB>;
-            layers = <OSM_BASE>;
-        };
-
-        // Delete on io
-        combo_del_hrm {
+        combo_del {
             timeout-ms = <50>;
             key-positions = <7 8>;
             bindings = <&kp DEL>;
-            layers = <HRM_BASE>;
         };
 
-        combo_del_osm {
-            timeout-ms = <50>;
-            key-positions = <7 8>;
-            bindings = <&kp DEL>;
-            layers = <OSM_BASE>;
-        };
-
-        // Caps word on shift keys (OSM mode only)
-        combo_caps_osm {
-            timeout-ms = <50>;
-            key-positions = <30 33>;
-            bindings = <&caps_word>;
-            layers = <OSM_BASE>;
-        };
-
-        // Adjustment layer access
         combo_adj {
             timeout-ms = <50>;
             key-positions = <33 35>;
             bindings = <&mo ADJ>;
         };
 
-        // Mirror layer access - hold left thumb while typing with right hand
-        combo_mirror_left {
+        combo_caps {
             timeout-ms = <50>;
-            key-positions = <31 32>;
-            bindings = <&sl HRM_BASE_MIRROR>;
-            layers = <HRM_BASE HRM_NAV HRM_NUM HRM_SYM HRM_FUN>;
-        };
-
-        combo_mirror_left_osm {
-            timeout-ms = <50>;
-            key-positions = <31 32>;
-            bindings = <&sl OSM_BASE_MIRROR>;
-            layers = <OSM_BASE OSM_NAV OSM_NUM OSM_SYM OSM_FUN>;
-        };
-
-        // Mirror layer access - hold right thumb while typing with left hand
-        combo_mirror_right {
-            timeout-ms = <50>;
-            key-positions = <34 35>;
-            bindings = <&sl HRM_BASE_MIRROR>;
-            layers = <HRM_BASE HRM_NAV HRM_NUM HRM_SYM HRM_FUN>;
-        };
-
-        combo_mirror_right_osm {
-            timeout-ms = <50>;
-            key-positions = <34 35>;
-            bindings = <&sl OSM_BASE_MIRROR>;
-            layers = <OSM_BASE OSM_NAV OSM_NUM OSM_SYM OSM_FUN>;
+            key-positions = <30 33>;
+            bindings = <&caps_word>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        // ═══════════════════════════════════════════════════════════════════════════
-        // HOME ROW MODS LAYERS
-        // ═══════════════════════════════════════════════════════════════════════════
-
-        hrm_base_layer {
-            label = "HRM";
+        // Base layer with home row mods
+        base_layer {
+            label = "BASE";
             bindings = <
-&kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
-HRML(A,       S,            D,            F)            &kp G             &kp H         HRMR(J,       K,            L,            SEMI)
-&kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
-&kp LCTRL     &kp LGUI      &kp LALT      &ltl HRM_NUM ESC &ltl HRM_NAV SPACE &none &kp RET &ltl HRM_SYM BSPC                              &kp RSHFT
+&kp Q           &kp W           &kp E            &kp R             &kp T              &kp Y         &kp U             &kp I            &kp O           &kp P
+&mt LGUI A      &mt LALT S      &mt LCTRL D      &mt LSHFT F       &kp G              &kp H         &mt RSHFT J       &mt RCTRL K      &mt RALT L      &mt RGUI SEMI
+&kp Z           &kp X           &kp C            &kp V             &kp B              &kp N         &kp M             &kp COMMA        &kp DOT         &kp FSLH
+&kp LCTRL       &kp LGUI        &kp LALT         &lt NUM ESC       &lt NAV SPACE      &none         &kp RET           &lt SYM BSPC                     &kp RSHFT
             >;
         };
 
-        hrm_nav_layer {
-            label = "HRM-NAV";
+        // Navigation layer
+        nav_layer {
+            label = "NAV";
             bindings = <
-&kp ESC       &kp TAB       &kp LC(T)     &kp LC(W)     &kp LC(R)         &kp PG_UP     &kp HOME      &kp UP        &kp END       &kp DEL
-&kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &kp LC(G)         &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT     &kp SQT
-&kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp LC(F)         &kp INS       &mkp LCLK     &mkp MCLK     &mkp RCLK     &kp BSLH
-&trans        &trans        &trans        &trans        &trans            &trans &mo HRM_FUN &trans                                  &trans
+&kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
+&kp LGUI        &kp LALT        &kp LCTRL        &kp LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &mkp LCLK         &mkp MCLK        &mkp RCLK       &kp BSLH
+&trans          &trans          &trans           &trans            &trans             &trans        &mo FUN           &trans                           &trans
             >;
         };
 
-        hrm_num_layer {
-            label = "HRM-NUM";
+        // Number layer
+        num_layer {
+            label = "NUM";
             bindings = <
-&kp LBKT      &kp N7        &kp N8        &kp N9        &kp RBKT          &kp F12       &kp F7        &kp F8        &kp F9        &kp PSCRN
-&kp SQT       &kp N4        &kp N5        &kp N6        &kp EQUAL         &kp F11       &kp F4        &kp F5        &kp F6        &kp SCRLK
-&kp GRAVE     &kp N1        &kp N2        &kp N3        &kp BSLH          &kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK
-&trans        &trans        &trans        &trans        &kp N0            &trans &trans &kp MINUS                                   &kp DOT
+&kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT           &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
+&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCRLK
+&kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH           &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
+&trans          &trans          &trans           &trans            &kp N0             &trans        &trans            &kp MINUS                        &kp DOT
             >;
         };
 
-        hrm_sym_layer {
-            label = "HRM-SYM";
+        // Symbol layer
+        sym_layer {
+            label = "SYM";
             bindings = <
-&kp LBRC      &kp AMPS      &kp ASTRK     &kp LPAR      &kp RBRC          &trans        &trans        &trans        &trans        &trans
-&kp DQT       &kp DLLR      &kp PRCNT     &kp CARET     &kp PLUS          &trans        &kp RSHFT     &kp RCTRL     &kp RALT      &kp RGUI
-&kp TILDE     &kp EXCL      &kp AT        &kp HASH      &kp PIPE          &trans        &trans        &trans        &trans        &trans
-&trans        &trans        &trans        &td_par       &kp UNDER         &trans &trans &trans                                      &trans
+&kp LBRC        &kp AMPS        &kp ASTRK        &kp LPAR          &kp RBRC           &trans        &trans            &trans           &trans          &trans
+&kp DQT         &kp DLLR        &kp PRCNT        &kp CARET         &kp PLUS           &trans        &kp RSHFT         &kp RCTRL        &kp RALT        &kp RGUI
+&kp TILDE       &kp EXCL        &kp AT           &kp HASH          &kp PIPE           &trans        &trans            &trans           &trans          &trans
+&trans          &trans          &trans           &kp LPAR          &kp UNDER          &trans        &trans            &trans                           &trans
             >;
         };
 
-        hrm_fun_layer {
-            label = "HRM-FUN";
+        // Function layer
+        fun_layer {
+            label = "FUN";
             bindings = <
-&kp F12       &kp F7        &kp F8        &kp F9        &kp PSCRN         &trans        &trans        &trans        &trans        &trans
-&kp F11       &kp F4        &kp F5        &kp F6        &kp SCRLK         &trans        &kp RSHFT     &kp RCTRL     &kp RALT      &kp RGUI
-&kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK   &trans        &trans        &trans        &trans        &trans
-&trans        &trans        &trans        &kp SPACE     &kp TAB           &trans &trans &kp DEL                                     &trans
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &trans        &trans            &trans           &trans          &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &trans        &kp RSHFT         &kp RCTRL        &kp RALT        &kp RGUI
+&kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &trans            &trans           &trans          &trans
+&trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
             >;
         };
 
-        // ═══════════════════════════════════════════════════════════════════════════
-        // ONE SHOT MODS LAYERS
-        // ═══════════════════════════════════════════════════════════════════════════
-
-        osm_base_layer {
-            label = "OSM";
+        // One-shot mod base layer
+        base_osm_layer {
+            label = "OSM-BASE";
             bindings = <
-&kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
-&kp A         &kp S         &kp D         &kp F         &kp G             &kp H         &kp J         &kp K         &kp L         &kp SEMI
-&kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
-&kp LCTRL     &kp LGUI      &kp LALT      &ltl OSM_NUM ESC &ltl OSM_NAV SPACE &none &kp RET &ltl OSM_SYM BSPC                          &smart_shft
+&kp Q           &kp W           &kp E            &kp R             &kp T              &kp Y         &kp U             &kp I            &kp O           &kp P
+&kp A           &kp S           &kp D            &kp F             &kp G              &kp H         &kp J             &kp K            &kp L           &kp SEMI
+&kp Z           &kp X           &kp C            &kp V             &kp B              &kp N         &kp M             &kp COMMA        &kp DOT         &kp FSLH
+&kp LCTRL       &kp LGUI        &kp LALT         &lt NUM_OSM ESC   &lt NAV_OSM SPACE  &none         &kp RET           &lt SYM_OSM BSPC                 &sk LSHFT
             >;
         };
 
-        osm_nav_layer {
+        // OSM Navigation layer
+        nav_osm_layer {
             label = "OSM-NAV";
             bindings = <
-&kp ESC       &kp TAB       &kp LC(T)     &kp LC(W)     &kp LC(R)         &kp PG_UP     &kp HOME      &kp UP        &kp END       &kp DEL
-OSM_LGUI      OSM_LALT      OSM_LCTL      OSM_LSFT      &kp LC(G)         &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT     &kp SQT
-&kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp LC(F)         &kp INS       &mkp LCLK     &mkp MCLK     &mkp RCLK     &kp BSLH
-&trans        &trans        &trans        &trans        &trans            &trans &mo OSM_FUN &trans                                &trans
+&kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
+&sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &mkp LCLK         &mkp MCLK        &mkp RCLK       &kp BSLH
+&trans          &trans          &trans           &trans            &trans             &trans        &mo FUN_OSM       &trans                           &trans
             >;
         };
 
-        osm_num_layer {
+        // OSM Number layer
+        num_osm_layer {
             label = "OSM-NUM";
             bindings = <
-&kp LBKT      &kp N7        &kp N8        &kp N9        &kp RBKT          &kp F12       &kp F7        &kp F8        &kp F9        &kp PSCRN
-&kp SQT       &kp N4        &kp N5        &kp N6        &kp EQUAL         &kp F11       &kp F4        &kp F5        &kp F6        &kp SCRLK
-&kp GRAVE     &kp N1        &kp N2        &kp N3        &kp BSLH          &kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK
-&trans        &trans        &trans        &trans        &kp N0            &trans &trans &kp MINUS                                 &kp DOT
+&kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT           &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
+&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCRLK
+&kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH           &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
+&trans          &trans          &trans           &trans            &kp N0             &trans        &trans            &kp MINUS                        &kp DOT
             >;
         };
 
-        osm_sym_layer {
+        // OSM Symbol layer
+        sym_osm_layer {
             label = "OSM-SYM";
             bindings = <
-&kp LBRC      &kp AMPS      &kp ASTRK     &kp LPAR      &kp RBRC          &trans        &trans        &trans        &trans        &trans
-&kp DQT       &kp DLLR      &kp PRCNT     &kp CARET     &kp PLUS          &trans        OSM_LSFT      OSM_LCTL      OSM_LALT      OSM_LGUI
-&kp TILDE     &kp EXCL      &kp AT        &kp HASH      &kp PIPE          &trans        &trans        &trans        &trans        &trans
-&trans        &trans        &trans        &td_par       &kp UNDER         &trans &trans &trans                                    &trans
+&kp LBRC        &kp AMPS        &kp ASTRK        &kp LPAR          &kp RBRC           &trans        &trans            &trans           &trans          &trans
+&kp DQT         &kp DLLR        &kp PRCNT        &kp CARET         &kp PLUS           &trans        &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
+&kp TILDE       &kp EXCL        &kp AT           &kp HASH          &kp PIPE           &trans        &trans            &trans           &trans          &trans
+&trans          &trans          &trans           &kp LPAR          &kp UNDER          &trans        &trans            &trans                           &trans
             >;
         };
 
-        osm_fun_layer {
+        // OSM Function layer
+        fun_osm_layer {
             label = "OSM-FUN";
             bindings = <
-&kp F12       &kp F7        &kp F8        &kp F9        &kp PSCRN         &trans        &trans        &trans        &trans        &trans
-&kp F11       &kp F4        &kp F5        &kp F6        &kp SCRLK         &trans        OSM_LSFT      OSM_LCTL      OSM_LALT      OSM_LGUI
-&kp F10       &kp F1        &kp F2        &kp F3        &kp PAUSE_BREAK   &trans        &trans        &trans        &trans        &trans
-&trans        &trans        &trans        &kp SPACE     &kp TAB           &trans &trans &kp DEL                                   &trans
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &trans        &trans            &trans           &trans          &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &trans        &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
+&kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &trans            &trans           &trans          &trans
+&trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
             >;
         };
 
-        // ═══════════════════════════════════════════════════════════════════════════
-        // MIRROR LAYERS FOR ONE-HANDED USE
-        // ═══════════════════════════════════════════════════════════════════════════
-
-        hrm_base_mirror {
-            label = "HRM-MIR";
-            bindings = <
-&kp P         &kp O         &kp I         &kp U         &kp Y             &kp T         &kp R         &kp E         &kp W         &kp Q
-HRML(SEMI,    L,            K,            J)            &kp H             &kp G         HRMR(F,       D,            S,            A)
-&kp FSLH      &kp DOT       &kp COMMA     &kp M         &kp N             &kp B         &kp V         &kp C         &kp X         &kp Z
-&kp RSHFT     &ltl HRM_SYM BSPC &kp RET   &none         &ltl HRM_NAV SPACE &ltl HRM_NUM ESC &kp LALT &kp LGUI                    &kp LCTRL
-            >;
-        };
-
-        hrm_nav_mirror {
-            label = "HRM-NAV-MIR";
-            bindings = <
-&kp DEL       &kp END       &kp UP        &kp HOME      &kp PG_UP         &kp LC(R)     &kp LC(W)     &kp LC(T)     &kp TAB       &kp ESC
-&kp SQT       &kp RIGHT     &kp DOWN      &kp LEFT      &kp PG_DN         &kp LC(G)     &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI
-&kp BSLH      &mkp RCLK     &mkp MCLK     &mkp LCLK     &kp INS           &kp LC(F)     &kp LC(V)     &kp LC(C)     &kp LC(X)     &kp LC(Z)
-&trans        &trans        &mo HRM_FUN   &trans        &trans            &trans &trans &trans                                    &trans
-            >;
-        };
-
-        hrm_num_mirror {
-            label = "HRM-NUM-MIR";
-            bindings = <
-&kp PSCRN     &kp F9        &kp F8        &kp F7        &kp F12           &kp RBKT      &kp N9        &kp N8        &kp N7        &kp LBKT
-&kp SCRLK     &kp F6        &kp F5        &kp F4        &kp F11           &kp EQUAL     &kp N6        &kp N5        &kp N4        &kp SQT
-&kp PAUSE_BREAK &kp F3      &kp F2        &kp F1        &kp F10           &kp BSLH      &kp N3        &kp N2        &kp N1        &kp GRAVE
-&kp DOT       &kp MINUS     &trans        &trans        &kp N0            &trans &trans &trans                                    &trans
-            >;
-        };
-
-        hrm_sym_mirror {
-            label = "HRM-SYM-MIR";
-            bindings = <
-&trans        &trans        &trans        &trans        &trans            &kp RBRC      &kp LPAR      &kp ASTRK     &kp AMPS      &kp LBRC
-&kp RGUI      &kp RALT      &kp RCTRL     &kp RSHFT     &trans            &kp PLUS      &kp CARET     &kp PRCNT     &kp DLLR      &kp DQT
-&trans        &trans        &trans        &trans        &trans            &kp PIPE      &kp HASH      &kp AT        &kp EXCL      &kp TILDE
-&trans        &trans        &trans        &trans        &kp UNDER         &td_par &trans &trans                                  &trans
-            >;
-        };
-
-        hrm_fun_mirror {
-            label = "HRM-FUN-MIR";
-            bindings = <
-&trans        &trans        &trans        &trans        &trans            &kp PSCRN     &kp F9        &kp F8        &kp F7        &kp F12
-&kp RGUI      &kp RALT      &kp RCTRL     &kp RSHFT     &trans            &kp SCRLK     &kp F6        &kp F5        &kp F4        &kp F11
-&trans        &trans        &trans        &trans        &trans            &kp PAUSE_BREAK &kp F3      &kp F2        &kp F1        &kp F10
-&trans        &kp DEL       &trans        &trans        &kp TAB           &kp SPACE &trans &trans                                &trans
-            >;
-        };
-
-        osm_base_mirror {
-            label = "OSM-MIR";
-            bindings = <
-&kp P         &kp O         &kp I         &kp U         &kp Y             &kp T         &kp R         &kp E         &kp W         &kp Q
-&kp SEMI      &kp L         &kp K         &kp J         &kp H             &kp G         &kp F         &kp D         &kp S         &kp A
-&kp FSLH      &kp DOT       &kp COMMA     &kp M         &kp N             &kp B         &kp V         &kp C         &kp X         &kp Z
-&smart_shft   &ltl OSM_SYM BSPC &kp RET   &none         &ltl OSM_NAV SPACE &ltl OSM_NUM ESC &kp LALT &kp LGUI                  &kp LCTRL
-            >;
-        };
-
-        osm_nav_mirror {
-            label = "OSM-NAV-MIR";
-            bindings = <
-&kp DEL       &kp END       &kp UP        &kp HOME      &kp PG_UP         &kp LC(R)     &kp LC(W)     &kp LC(T)     &kp TAB       &kp ESC
-&kp SQT       &kp RIGHT     &kp DOWN      &kp LEFT      &kp PG_DN         &kp LC(G)     OSM_LSFT      OSM_LCTL      OSM_LALT      OSM_LGUI
-&kp BSLH      &mkp RCLK     &mkp MCLK     &mkp LCLK     &kp INS           &kp LC(F)     &kp LC(V)     &kp LC(C)     &kp LC(X)     &kp LC(Z)
-&trans        &trans        &mo OSM_FUN   &trans        &trans            &trans &trans &trans                                    &trans
-            >;
-        };
-
-        osm_num_mirror {
-            label = "OSM-NUM-MIR";
-            bindings = <
-&kp PSCRN     &kp F9        &kp F8        &kp F7        &kp F12           &kp RBKT      &kp N9        &kp N8        &kp N7        &kp LBKT
-&kp SCRLK     &kp F6        &kp F5        &kp F4        &kp F11           &kp EQUAL     &kp N6        &kp N5        &kp N4        &kp SQT
-&kp PAUSE_BREAK &kp F3      &kp F2        &kp F1        &kp F10           &kp BSLH      &kp N3        &kp N2        &kp N1        &kp GRAVE
-&kp DOT       &kp MINUS     &trans        &trans        &kp N0            &trans &trans &trans                                    &trans
-            >;
-        };
-
-        osm_sym_mirror {
-            label = "OSM-SYM-MIR";
-            bindings = <
-&trans        &trans        &trans        &trans        &trans            &kp RBRC      &kp LPAR      &kp ASTRK     &kp AMPS      &kp LBRC
-OSM_LGUI      OSM_LALT      OSM_LCTL      OSM_LSFT      &trans            &kp PLUS      &kp CARET     &kp PRCNT     &kp DLLR      &kp DQT
-&trans        &trans        &trans        &trans        &trans            &kp PIPE      &kp HASH      &kp AT        &kp EXCL      &kp TILDE
-&trans        &trans        &trans        &trans        &kp UNDER         &td_par &trans &trans                                  &trans
-            >;
-        };
-
-        osm_fun_mirror {
-            label = "OSM-FUN-MIR";
-            bindings = <
-&trans        &trans        &trans        &trans        &trans            &kp PSCRN     &kp F9        &kp F8        &kp F7        &kp F12
-OSM_LGUI      OSM_LALT      OSM_LCTL      OSM_LSFT      &trans            &kp SCRLK     &kp F6        &kp F5        &kp F4        &kp F11
-&trans        &trans        &trans        &trans        &trans            &kp PAUSE_BREAK &kp F3      &kp F2        &kp F1        &kp F10
-&trans        &kp DEL       &trans        &trans        &kp TAB           &kp SPACE &trans &trans                                &trans
-            >;
-        };
-
-        // ═══════════════════════════════════════════════════════════════════════════
-        // ADJUSTMENT LAYER
-        // ═══════════════════════════════════════════════════════════════════════════
-
+        // Adjustment layer
         adj_layer {
             label = "ADJ";
             bindings = <
-&bootloader   &trans        &trans        &trans        &to HRM_BASE      &to OSM_BASE  &trans        &trans        &trans        &bootloader
-&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &trans        &trans        &trans        &trans        &trans
-&sys_reset    &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &sys_reset
-&trans        &trans        &trans        &trans        &trans            &trans &trans &trans                                    &trans
+&bootloader     &trans          &trans           &trans            &to BASE           &to BASE_OSM  &trans            &trans           &trans          &bootloader
+&bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2      &bt BT_SEL 3       &trans        &trans            &trans           &trans          &trans
+&sys_reset      &trans          &trans           &trans            &trans             &trans        &trans            &trans           &trans          &sys_reset
+&trans          &trans          &trans           &trans            &trans             &trans        &trans            &trans                           &trans
             >;
         };
     };
