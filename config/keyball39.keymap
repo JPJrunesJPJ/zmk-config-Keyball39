@@ -11,17 +11,27 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Layer definitions
-#define BASE     0
-#define NAV      1
-#define NUM      2
-#define SYM      3
-#define FUN      4
-#define BASE_OSM 5
-#define NAV_OSM  6
-#define NUM_OSM  7
-#define SYM_OSM  8
-#define FUN_OSM  9
-#define ADJ     10
+#define BASE        0
+#define NAV         1
+#define NUM         2
+#define SYM         3
+#define FUN         4
+#define BASE_OSM    5
+#define NAV_OSM     6
+#define NUM_OSM     7
+#define SYM_OSM     8
+#define FUN_OSM     9
+#define ADJ        10
+#define BASE_MIR   11
+#define NAV_MIR    12
+#define NUM_MIR    13
+#define SYM_MIR    14
+#define FUN_MIR    15
+#define BASE_OSM_MIR 16
+#define NAV_OSM_MIR  17
+#define NUM_OSM_MIR  18
+#define SYM_OSM_MIR  19
+#define FUN_OSM_MIR  20
 
 &lt {
     tapping-term-ms = <240>;
@@ -47,7 +57,20 @@
             timeout-ms = <50>;
             key-positions = <16 17>;
             bindings = <&kp ESC>;
+            combo_mirror_hrm {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            bindings = <&sl BASE_MIR>;
+            layers = <BASE NAV NUM SYM FUN>;
         };
+
+        combo_mirror_osm {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            bindings = <&sl BASE_OSM_MIR>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM>;
+        };
+    };
 
         combo_tab {
             timeout-ms = <50>;
@@ -195,6 +218,114 @@
 &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2      &bt BT_SEL 3       &trans        &trans            &trans           &trans          &trans
 &sys_reset      &trans          &trans           &trans            &trans             &trans        &trans            &trans           &trans          &sys_reset
 &trans          &trans          &trans           &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
+
+        // ═══════════════════════════════════════════════════════════════════════════
+        // MIRROR LAYERS - HOME ROW MODS
+        // ═══════════════════════════════════════════════════════════════════════════
+
+        base_mir_layer {
+            label = "BASE-MIR";
+            bindings = <
+&kp P           &kp O           &kp I            &kp U             &kp Y              &kp T         &kp R             &kp E            &kp W           &kp Q
+&mt RGUI SEMI   &mt RALT L      &mt RCTRL K      &mt RSHFT J       &kp H              &kp G         &mt LSHFT F       &mt LCTRL D      &mt LALT S      &mt LGUI A
+&kp FSLH        &kp DOT         &kp COMMA        &kp M             &kp N              &kp B         &kp V             &kp C            &kp X           &kp Z
+&kp RSHFT       &lt SYM_MIR BSPC &kp RET        &none             &lt NAV_MIR SPACE  &lt NUM_MIR ESC &kp LALT        &kp LGUI                         &kp LCTRL
+            >;
+        };
+
+        nav_mir_layer {
+            label = "NAV-MIR";
+            bindings = <
+&kp DEL         &kp END         &kp UP           &kp HOME          &kp PG_UP          &kp LC(R)     &kp LC(W)         &kp LC(T)        &kp TAB         &kp ESC
+&kp SQT         &kp RIGHT       &kp DOWN         &kp LEFT          &kp PG_DN          &kp LC(G)     &kp LSHFT         &kp LCTRL        &kp LALT        &kp LGUI
+&kp BSLH        &mkp RCLK       &mkp MCLK        &mkp LCLK         &kp INS            &kp LC(F)     &kp LC(V)         &kp LC(C)        &kp LC(X)       &kp LC(Z)
+&trans          &trans          &mo FUN_MIR      &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
+
+        num_mir_layer {
+            label = "NUM-MIR";
+            bindings = <
+&kp PSCRN       &kp F9          &kp F8           &kp F7            &kp F12            &kp RBKT      &kp N9            &kp N8           &kp N7          &kp LBKT
+&kp SCRLK       &kp F6          &kp F5           &kp F4            &kp F11            &kp EQUAL     &kp N6            &kp N5           &kp N4          &kp SQT
+&kp PAUSE_BREAK &kp F3          &kp F2           &kp F1            &kp F10            &kp BSLH      &kp N3            &kp N2           &kp N1          &kp GRAVE
+&kp DOT         &kp MINUS       &trans           &trans            &kp N0             &trans        &trans            &trans                           &trans
+            >;
+        };
+
+        sym_mir_layer {
+            label = "SYM-MIR";
+            bindings = <
+&trans          &trans          &trans           &trans            &trans             &kp RBRC      &kp LPAR          &kp ASTRK        &kp AMPS        &kp LBRC
+&kp RGUI        &kp RALT        &kp RCTRL        &kp RSHFT         &trans             &kp PLUS      &kp CARET         &kp PRCNT        &kp DLLR        &kp DQT
+&trans          &trans          &trans           &trans            &trans             &kp PIPE      &kp HASH          &kp AT           &kp EXCL        &kp TILDE
+&trans          &trans          &trans           &trans            &kp UNDER          &kp LPAR      &trans            &trans                           &trans
+            >;
+        };
+
+        fun_mir_layer {
+            label = "FUN-MIR";
+            bindings = <
+&trans          &trans          &trans           &trans            &trans             &kp PSCRN     &kp F9            &kp F8           &kp F7          &kp F12
+&kp RGUI        &kp RALT        &kp RCTRL        &kp RSHFT         &trans             &kp SCRLK     &kp F6            &kp F5           &kp F4          &kp F11
+&trans          &trans          &trans           &trans            &trans             &kp PAUSE_BREAK &kp F3          &kp F2           &kp F1          &kp F10
+&trans          &kp DEL         &trans           &trans            &kp TAB            &kp SPACE     &trans            &trans                           &trans
+            >;
+        };
+
+        // ═══════════════════════════════════════════════════════════════════════════
+        // MIRROR LAYERS - ONE SHOT MODS
+        // ═══════════════════════════════════════════════════════════════════════════
+
+        base_osm_mir_layer {
+            label = "OSM-MIR";
+            bindings = <
+&kp P           &kp O           &kp I            &kp U             &kp Y              &kp T         &kp R             &kp E            &kp W           &kp Q
+&kp SEMI        &kp L           &kp K            &kp J             &kp H              &kp G         &kp F             &kp D            &kp S           &kp A
+&kp FSLH        &kp DOT         &kp COMMA        &kp M             &kp N              &kp B         &kp V             &kp C            &kp X           &kp Z
+&sk LSHFT       &lt SYM_OSM_MIR BSPC &kp RET     &none             &lt NAV_OSM_MIR SPACE &lt NUM_OSM_MIR ESC &kp LALT &kp LGUI                       &kp LCTRL
+            >;
+        };
+
+        nav_osm_mir_layer {
+            label = "OSM-NAV-MIR";
+            bindings = <
+&kp DEL         &kp END         &kp UP           &kp HOME          &kp PG_UP          &kp LC(R)     &kp LC(W)         &kp LC(T)        &kp TAB         &kp ESC
+&kp SQT         &kp RIGHT       &kp DOWN         &kp LEFT          &kp PG_DN          &kp LC(G)     &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
+&kp BSLH        &mkp RCLK       &mkp MCLK        &mkp LCLK         &kp INS            &kp LC(F)     &kp LC(V)         &kp LC(C)        &kp LC(X)       &kp LC(Z)
+&trans          &trans          &mo FUN_OSM_MIR  &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
+
+        num_osm_mir_layer {
+            label = "OSM-NUM-MIR";
+            bindings = <
+&kp PSCRN       &kp F9          &kp F8           &kp F7            &kp F12            &kp RBKT      &kp N9            &kp N8           &kp N7          &kp LBKT
+&kp SCRLK       &kp F6          &kp F5           &kp F4            &kp F11            &kp EQUAL     &kp N6            &kp N5           &kp N4          &kp SQT
+&kp PAUSE_BREAK &kp F3          &kp F2           &kp F1            &kp F10            &kp BSLH      &kp N3            &kp N2           &kp N1          &kp GRAVE
+&kp DOT         &kp MINUS       &trans           &trans            &kp N0             &trans        &trans            &trans                           &trans
+            >;
+        };
+
+        sym_osm_mir_layer {
+            label = "OSM-SYM-MIR";
+            bindings = <
+&trans          &trans          &trans           &trans            &trans             &kp RBRC      &kp LPAR          &kp ASTRK        &kp AMPS        &kp LBRC
+&sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &trans             &kp PLUS      &kp CARET         &kp PRCNT        &kp DLLR        &kp DQT
+&trans          &trans          &trans           &trans            &trans             &kp PIPE      &kp HASH          &kp AT           &kp EXCL        &kp TILDE
+&trans          &trans          &trans           &trans            &kp UNDER          &kp LPAR      &trans            &trans                           &trans
+            >;
+        };
+
+        fun_osm_mir_layer {
+            label = "OSM-FUN-MIR";
+            bindings = <
+&trans          &trans          &trans           &trans            &trans             &kp PSCRN     &kp F9            &kp F8           &kp F7          &kp F12
+&sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &trans             &kp SCRLK     &kp F6            &kp F5           &kp F4          &kp F11
+&trans          &trans          &trans           &trans            &trans             &kp PAUSE_BREAK &kp F3          &kp F2           &kp F1          &kp F10
+&trans          &kp DEL         &trans           &trans            &kp TAB            &kp SPACE     &trans            &trans                           &trans
             >;
         };
     };
