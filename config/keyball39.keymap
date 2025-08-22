@@ -16,30 +16,26 @@
 #define NUM         2
 #define SYM         3
 #define FUN         4
-#define FUNX        5  // Extended Function layer (F13-F24)
-#define WIN         6  // Windows Management layer
-#define BASE_OSM    7
-#define NAV_OSM     8
-#define NUM_OSM     9
-#define SYM_OSM     10
-#define FUN_OSM     11
-#define FUNX_OSM    12 // OSM Extended Function layer
-#define WIN_OSM     13 // OSM Windows Management layer
-#define ADJ         14
-#define BASE_MIR    15
-#define NAV_MIR     16
-#define NUM_MIR     17
-#define SYM_MIR     18
-#define FUN_MIR     19
-#define FUNX_MIR    20
-#define WIN_MIR     21
-#define BASE_OSM_MIR 22
-#define NAV_OSM_MIR  23
-#define NUM_OSM_MIR  24
-#define SYM_OSM_MIR  25
-#define FUN_OSM_MIR  26
-#define FUNX_OSM_MIR 27
-#define WIN_OSM_MIR  28
+#define WIN         5  // New Windows Management layer
+#define BASE_OSM    6
+#define NAV_OSM     7
+#define NUM_OSM     8
+#define SYM_OSM     9
+#define FUN_OSM     10
+#define WIN_OSM     11 // OSM Windows Management layer
+#define ADJ         12
+#define BASE_MIR    13
+#define NAV_MIR     14
+#define NUM_MIR     15
+#define SYM_MIR     16
+#define FUN_MIR     17
+#define WIN_MIR     18
+#define BASE_OSM_MIR 19
+#define NAV_OSM_MIR  20
+#define NUM_OSM_MIR  21
+#define SYM_OSM_MIR  22
+#define FUN_OSM_MIR  23
+#define WIN_OSM_MIR  24
 
 // Enhanced behavior configurations
 &lt {
@@ -261,34 +257,19 @@
             bindings = <&mo ADJ>;
         };
 
-        // Extended function keys access
-        combo_funx_layer {
-            timeout-ms = <50>;
-            key-positions = <3 4>;    // R + T
-            bindings = <&sl FUNX>;
-            layers = <BASE FUN BASE_OSM FUN_OSM>;
-        };
-
-        combo_funx_layer_nav {
-            timeout-ms = <50>;
-            key-positions = <3 4>;    // R + T
-            bindings = <&sl FUNX>;
-            layers = <NAV NAV_OSM>;
-        };
-
         // Windows management layer access (both modes)
         combo_win_layer {
             timeout-ms = <50>;
             key-positions = <30 31>;  // Bottom left corner
             bindings = <&sl WIN>;
-            layers = <BASE NAV NUM SYM FUN FUNX>;
+            layers = <BASE NAV NUM SYM FUN>;
         };
 
         combo_win_layer_osm {
             timeout-ms = <50>;
             key-positions = <30 31>;  // Bottom left corner
             bindings = <&sl WIN_OSM>;
-            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM>;
         };
 
         // Mirror layer access - context aware
@@ -296,15 +277,23 @@
             timeout-ms = <100>;
             key-positions = <31 32>;
             bindings = <&sl BASE_MIR>;
-            layers = <BASE NAV NUM SYM FUN FUNX WIN>;
+            layers = <BASE NAV NUM SYM FUN WIN>;
         };
 
         combo_mirror_osm {
             timeout-ms = <100>;
             key-positions = <31 32>;
             bindings = <&sl BASE_OSM_MIR>;
-            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM WIN_OSM>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM WIN_OSM>;
         };
+
+        // Emergency base layer return
+        combo_base_return {
+            timeout-ms = <100>;
+            key-positions = <0 9>;    // Q + P
+            bindings = <&to BASE>;
+        };
+    };
 
     macros {
         // Arrow function macro (for programming)
@@ -367,11 +356,11 @@
             bindings = <&kp LC(LA(TAB))>;
         };
 
-        // Emergency base layer return
-        combo_base_return {
-            timeout-ms = <100>;
-            key-positions = <0 9>;    // Q + P
-            bindings = <&to BASE>;
+        ctrl_alt_shift_tab: ctrl_alt_shift_tab {
+            compatible = "zmk,behavior-macro";
+            label = "CTRL_ALT_SHIFT_TAB";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LA(LS(TAB)))>;
         };
     };
 
@@ -488,25 +477,14 @@
             >;
         };
 
-        // OSM Function layer with access to extended functions
+        // OSM Function layer with media controls
         fun_osm_layer {
             label = "OSM-FUN";
             bindings = <
-&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &sl FUNX_OSM    &trans
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &trans
 &kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
 &kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
 &trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
-            >;
-        };
-
-        // Extended Function layer (F13-F24) - OSM version
-        funx_osm_layer {
-            label = "FUNX-OSM";
-            bindings = <
-&kp F24         &kp F19         &kp F20          &kp F21           &kp F22            &obs_start_stop &discord_mute   &spotify_play_pause &teams_mute   &kp F23
-&kp F18         &kp F15         &kp F16          &kp F17           &kp F22            &obs_pause    &discord_deafen   &kp F20          &kp F21         &kp F22
-&kp F13         &kp F14         &kp F15          &kp F16           &kp F17            &kp F18       &kp F19           &kp F20          &kp F21         &kp F22
-&trans          &trans          &trans           &trans            &trans             &trans        &kp F23           &kp F24                          &trans
             >;
         };
 
@@ -514,10 +492,10 @@
         win_osm_layer {
             label = "WIN-OSM";
             bindings = <
-&kp LG(TAB)     &alt_tab         &ctrl_alt_tab    &kp LC(LG(RIGHT)) &kp LC(LG(D))      &alt_shift_tab &kp LG(N7)        &kp LG(N8)       &kp LG(N9)      &win_lock
-&kp LG(LEFT)    &kp LG(DOWN)     &kp LG(UP)       &kp LG(RIGHT)     &kp LG(D)          &ctrl_alt_shift_tab &kp LG(N4)   &kp LG(N5)       &kp LG(N6)      &win_settings
-&win_run        &kp LG(X)        &kp LG(C)        &kp LG(V)         &kp LC(LG(F4))     &kp LG(M)     &kp LG(N1)        &kp LG(N2)       &kp LG(N3)      &kp LG(SEMI)
-&trans          &trans           &trans           &kp LC(LG(LEFT))  &trans             &trans        &kp LG(N0)        &trans                           &trans
+&kp LG(TAB)     &kp LC(LG(LEFT)) &kp LG(UP)      &kp LC(LG(RIGHT)) &kp LC(LG(D))      &alt_tab      &kp LG(N7)        &kp LG(N8)       &kp LG(N9)      &win_lock
+&kp LG(LEFT)    &kp LG(DOWN)     &kp LG(UP)      &kp LG(RIGHT)     &kp LG(D)          &kp LG(Z)     &kp LG(N4)        &kp LG(N5)       &kp LG(N6)      &win_settings
+&win_run        &kp LG(X)        &kp LG(C)       &kp LG(V)         &kp LC(LG(F4))     &kp LG(M)     &kp LG(N1)        &kp LG(N2)       &kp LG(N3)      &kp LG(SEMI)
+&trans          &trans           &trans          &trans            &trans             &trans        &kp LG(N0)        &trans                           &trans
             >;
         };
 
@@ -580,10 +558,10 @@
         win_mir_layer {
             label = "WIN-MIR";
             bindings = <
-&win_lock       &kp LG(N9)      &kp LG(N8)       &kp LG(N7)        &alt_shift_tab     &kp LC(LG(D)) &kp LC(LG(RIGHT)) &ctrl_alt_tab    &alt_tab        &kp LG(TAB)
-&win_settings   &kp LG(N6)      &kp LG(N5)       &kp LG(N4)        &ctrl_alt_shift_tab &kp LG(D)    &kp LG(RIGHT)     &kp LG(UP)      &kp LG(DOWN)    &kp LG(LEFT)
+&win_lock       &kp LG(N9)      &kp LG(N8)       &kp LG(N7)        &alt_tab           &kp LC(LG(D)) &kp LC(LG(RIGHT)) &kp LG(UP)      &kp LC(LG(LEFT)) &kp LG(TAB)
+&win_settings   &kp LG(N6)      &kp LG(N5)       &kp LG(N4)        &kp LG(Z)          &kp LG(D)     &kp LG(RIGHT)     &kp LG(UP)      &kp LG(DOWN)    &kp LG(LEFT)
 &kp LG(SEMI)    &kp LG(N3)      &kp LG(N2)       &kp LG(N1)        &kp LG(M)          &kp LC(LG(F4)) &kp LG(V)        &kp LG(C)       &kp LG(X)       &win_run
-&trans          &trans          &kp LG(N0)       &trans            &trans             &kp LC(LG(LEFT)) &trans         &trans                           &trans
+&trans          &trans          &kp LG(N0)       &trans            &trans             &trans        &trans            &trans                           &trans
             >;
         };
 
@@ -641,25 +619,14 @@
             >;
         };
 
-        // Extended Function mirror layers
-        funx_mir_layer {
-            label = "FUNX-MIR";
+        // OSM Windows Management mirror
+        win_osm_mir_layer {
+            label = "WIN-OSM-MIR";
             bindings = <
-&kp F23         &teams_mute     &spotify_play_pause &discord_mute   &obs_start_stop    &kp F22       &kp F21           &kp F20          &kp F19         &kp F24
-&kp F22         &kp F21         &kp F20          &discord_deafen   &obs_pause         &kp F22       &kp F17           &kp F16          &kp F15         &kp F18
-&kp F22         &kp F21         &kp F20          &kp F19           &kp F18            &kp F17       &kp F16           &kp F15          &kp F14         &kp F13
-&trans          &kp F24         &kp F23          &trans            &trans             &trans        &trans            &trans                           &trans
-            >;
-        };
-
-        // OSM Extended Function mirror
-        funx_osm_mir_layer {
-            label = "FUNX-OSM-MIR";
-            bindings = <
-&kp F23         &teams_mute     &spotify_play_pause &discord_mute   &obs_start_stop    &kp F22       &kp F21           &kp F20          &kp F19         &kp F24
-&kp F22         &kp F21         &kp F20          &discord_deafen   &obs_pause         &kp F22       &kp F17           &kp F16          &kp F15         &kp F18
-&kp F22         &kp F21         &kp F20          &kp F19           &kp F18            &kp F17       &kp F16           &kp F15          &kp F14         &kp F13
-&trans          &kp F24         &kp F23          &trans            &trans             &trans        &trans            &trans                           &trans
+&win_lock       &kp LG(N9)      &kp LG(N8)       &kp LG(N7)        &alt_tab           &kp LC(LG(D)) &kp LC(LG(RIGHT)) &kp LG(UP)      &kp LC(LG(LEFT)) &kp LG(TAB)
+&win_settings   &kp LG(N6)      &kp LG(N5)       &kp LG(N4)        &kp LG(Z)          &kp LG(D)     &kp LG(RIGHT)     &kp LG(UP)      &kp LG(DOWN)    &kp LG(LEFT)
+&kp LG(SEMI)    &kp LG(N3)      &kp LG(N2)       &kp LG(N1)        &kp LG(M)          &kp LC(LG(F4)) &kp LG(V)        &kp LG(C)       &kp LG(X)       &win_run
+&trans          &trans          &kp LG(N0)       &trans            &trans             &trans        &trans            &trans                           &trans
             >;
         };
     };
