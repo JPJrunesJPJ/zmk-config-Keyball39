@@ -1,19 +1,4 @@
-// Windows management layer
-        combo_win_layer {
-            timeout-ms = <50>;
-            key-positions = <30 31>;
-            bindings = <&sl WIN>;
-            layers = <BASE NAV NUM SYM FUN FUNX>;
-        };
-
-        combo_win_layer_osm {
-            timeout-ms = <50>;
-            key-positions = <30 31>;
-            bindings = <&sl WIN_OSM>;
-            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM>;
-        };
-
-        // Layer access combos (since/*
+/*
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
@@ -38,13 +23,22 @@
 #define SYM_OSM     9
 #define FUN_OSM     10
 #define WIN_OSM     11
-#define ADJ         12
-#define BASE_MIR    13
-#define NAV_MIR     14
-#define NUM_MIR     15
-#define SYM_MIR     16
-#define FUN_MIR     17
-#define WIN_MIR     18
+#define FUNX        12
+#define FUNX_OSM    13
+#define ADJ         14
+#define BASE_MIR    15
+#define NAV_MIR     16
+#define NUM_MIR     17
+#define SYM_MIR     18
+#define FUN_MIR     19
+#define WIN_MIR     20
+#define BASE_OSM_MIR 21
+#define NAV_OSM_MIR  22
+#define NUM_OSM_MIR  23
+#define SYM_OSM_MIR  24
+#define FUN_OSM_MIR  25
+#define FUNX_OSM_MIR 26
+#define WIN_OSM_MIR  27
 
 // Enhanced behavior configurations
 &lt {
@@ -73,6 +67,22 @@
 };
 
 / {
+    behaviors {
+        // Add missing behaviors
+        mouse_precision: mouse_precision {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&inc_dec_kp C_AC_ZOOM_IN C_AC_ZOOM_OUT>;
+        };
+        
+        dpi_cycle: dpi_cycle {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp F13>, <&kp F14>, <&kp F15>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
         
@@ -162,14 +172,14 @@
             timeout-ms = <50>;
             key-positions = <30 31>;
             bindings = <&sl WIN>;
-            layers = <BASE NAV NUM SYM FUN>;
+            layers = <BASE NAV NUM SYM FUN FUNX>;
         };
 
         combo_win_layer_osm {
             timeout-ms = <50>;
             key-positions = <30 31>;
             bindings = <&sl WIN_OSM>;
-            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM>;
         };
 
         // Adjustment layer
@@ -234,6 +244,43 @@
             #binding-cells = <0>;
             bindings = <&kp LG(L)>;
         };
+
+        // Media control macros (simplified)
+        teams_mute: teams_mute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(M))>;
+        };
+
+        spotify_play_pause: spotify_play_pause {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C_PP>;
+        };
+
+        discord_mute: discord_mute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(M))>;
+        };
+
+        discord_deafen: discord_deafen {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(D))>;
+        };
+
+        obs_start_stop: obs_start_stop {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp F13>;
+        };
+
+        obs_pause: obs_pause {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp F14>;
+        };
     };
 
     keymap {
@@ -278,7 +325,7 @@
 
         fun_layer {
             bindings = <
-&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &trans
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX
 &kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
 &kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
 &trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
@@ -332,7 +379,7 @@
 
         fun_osm_layer {
             bindings = <
-&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &trans
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX_OSM
 &kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
 &kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
 &trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
@@ -345,6 +392,24 @@
 &kp LG(LEFT)    &kp LG(DOWN)    &kp LG(UP)       &kp LG(RIGHT)     &kp LG(D)          &kp LG(Z)     &kp LG(N4)        &kp LG(N5)       &kp LG(N6)      &win_settings
 &win_run        &kp LG(X)       &kp LG(C)        &kp LG(V)         &kp LC(LG(F4))     &kp LG(M)     &kp LG(N1)        &kp LG(N2)       &kp LG(N3)      &kp LG(SEMI)
 &trans          &trans          &trans           &kp LC(LG(LEFT))  &trans             &trans        &kp LG(N0)        &trans                           &trans
+            >;
+        };
+
+        funx_layer {
+            bindings = <
+&kp F24         &kp F19         &kp F20          &kp F21           &kp F22            &kp F23       &teams_mute       &spotify_play_pause &discord_mute &obs_start_stop
+&kp F18         &kp F15         &kp F16          &kp F17           &kp F18            &kp F19       &kp F20           &kp F21          &discord_deafen &obs_pause
+&kp F13         &kp F14         &kp F15          &kp F16           &kp F17            &kp F18       &kp F19           &kp F20          &kp F21         &kp F22
+&trans          &trans          &trans           &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
+
+        funx_osm_layer {
+            bindings = <
+&kp F24         &kp F19         &kp F20          &kp F21           &kp F22            &kp F23       &teams_mute       &spotify_play_pause &discord_mute &obs_start_stop
+&kp F18         &kp F15         &kp F16          &kp F17           &kp F18            &kp F19       &kp F20           &kp F21          &discord_deafen &obs_pause
+&kp F13         &kp F14         &kp F15          &kp F16           &kp F17            &kp F18       &kp F19           &kp F20          &kp F21         &kp F22
+&trans          &trans          &trans           &trans            &trans             &trans        &trans            &trans                           &trans
             >;
         };
 
@@ -412,10 +477,7 @@
             >;
         };
 
-        // ═══════════════════════════════════════════════════════════════════════════
         // OSM MIRROR LAYERS
-        // ═══════════════════════════════════════════════════════════════════════════
-
         base_osm_mir_layer {
             bindings = <
 &kp P           &kp O           &kp I            &kp U             &kp Y              &kp T         &kp R             &kp E            &kp W           &kp Q
@@ -429,7 +491,7 @@
             bindings = <
 &kp DEL         &kp END         &kp UP           &kp HOME          &kp PG_UP          &kp LC(R)     &kp LC(W)         &kp LC(T)        &kp TAB         &kp ESC
 &kp SQT         &kp RIGHT       &kp DOWN         &kp LEFT          &kp PG_DN          &kp LC(G)     &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
-&mouse_precision &dpi_cycle     &mkp RCLK        &mkp MCLK         &mkp LCLK          &kp LC(F)     &kp LC(V)         &kp LC(C)        &kp LC(X)       &kp LC(Z)
+&kp BSLH        &mkp RCLK       &mkp MCLK        &mkp LCLK         &kp INS            &kp LC(F)     &kp LC(V)         &kp LC(C)        &kp LC(X)       &kp LC(Z)
 &trans          &trans          &sl WIN_OSM_MIR  &trans            &trans             &trans        &trans            &trans                           &trans
             >;
         };
@@ -463,10 +525,10 @@
 
         funx_osm_mir_layer {
             bindings = <
-&kp F23         &teams_mute     &spotify_play_pause &discord_mute   &obs_start_stop    &kp F22       &kp F21           &kp F20          &kp F19         &kp F24
-&kp F22         &kp F21         &kp F20          &discord_deafen   &obs_pause         &kp F22       &kp F17           &kp F16          &kp F15         &kp F18
+&obs_start_stop &discord_mute   &spotify_play_pause &teams_mute    &kp F23            &kp F22       &kp F21           &kp F20          &kp F19         &kp F24
+&obs_pause      &discord_deafen &kp F20          &kp F21           &kp F18            &kp F22       &kp F17           &kp F16          &kp F15         &kp F18
 &kp F22         &kp F21         &kp F20          &kp F19           &kp F18            &kp F17       &kp F16           &kp F15          &kp F14         &kp F13
-&trans          &kp F24         &kp F23          &trans            &trans             &trans        &trans            &trans                           &trans
+&trans          &trans          &trans           &kp F23           &kp F24            &trans        &trans            &trans                           &trans
             >;
         };
 
