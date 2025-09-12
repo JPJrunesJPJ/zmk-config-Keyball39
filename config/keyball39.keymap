@@ -254,7 +254,7 @@
             bindings = <
 &kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
 &sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
-&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp MENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp K_CMENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
                                                  &trans            &trans             &sl WIN       &trans            &trans
             >;
         };
@@ -308,7 +308,7 @@
             bindings = <
 &kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
 &sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
-&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp MENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp K_CMENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
                                                  &trans            &trans             &sl WIN_OSM   &trans            &trans
             >;
         };
