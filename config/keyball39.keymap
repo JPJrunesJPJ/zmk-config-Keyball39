@@ -1,330 +1,482 @@
-combos {
-    compatible = "zmk,combos";
+// Windows management layer
+        combo_win_layer {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&sl WIN>;
+            layers = <BASE NAV NUM SYM FUN FUNX>;
+        };
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // UNIVERSAL COMBOS (keep existing - they work well)
-    // ═══════════════════════════════════════════════════════════════════════════
+        combo_win_layer_osm {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&sl WIN_OSM>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM>;
+        };
 
-    combo_esc {
-        timeout-ms = <40>;
-        key-positions = <16 17>;
-        bindings = <&kp ESC>;
+        // Layer access combos (since/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors/mouse_keys.dtsi>
+#include <dt-bindings/zmk/mouse.h>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+// Layer definitions
+#define BASE        0
+#define NAV         1
+#define NUM         2
+#define SYM         3
+#define FUN         4
+#define WIN         5
+#define BASE_OSM    6
+#define NAV_OSM     7
+#define NUM_OSM     8
+#define SYM_OSM     9
+#define FUN_OSM     10
+#define WIN_OSM     11
+#define ADJ         12
+#define BASE_MIR    13
+#define NAV_MIR     14
+#define NUM_MIR     15
+#define SYM_MIR     16
+#define FUN_MIR     17
+#define WIN_MIR     18
+
+// Enhanced behavior configurations
+&lt {
+    tapping-term-ms = <280>;
+    flavor = "balanced";
+    quick-tap-ms = <175>;
+    global-quick-tap;
+};
+
+&mt {
+    tapping-term-ms = <280>;
+    flavor = "balanced";
+    quick-tap-ms = <175>;
+    global-quick-tap;
+    retro-tap;
+};
+
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+};
+
+&caps_word { 
+    continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+    shift-continuation = <UNDERSCORE>;
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        
+        // Universal escape
+        combo_esc {
+            timeout-ms = <40>;
+            key-positions = <16 17>;
+            bindings = <&kp ESC>;
+        };
+
+        // Quick tab access
+        combo_tab {
+            timeout-ms = <40>;
+            key-positions = <0 1>;
+            bindings = <&kp TAB>;
+        };
+
+        // Quick delete
+        combo_del {
+            timeout-ms = <40>;
+            key-positions = <7 8>;
+            bindings = <&kp DEL>;
+        };
+
+        // Enhanced caps word
+        combo_caps {
+            timeout-ms = <50>;
+            key-positions = <13 16>;
+            bindings = <&caps_word>;
+        };
+
+        // Programming brackets
+        combo_lbkt {
+            timeout-ms = <30>;
+            key-positions = <1 2>;
+            bindings = <&kp LBKT>;
+        };
+
+        combo_rbkt {
+            timeout-ms = <30>;
+            key-positions = <2 3>;
+            bindings = <&kp RBKT>;
+        };
+
+        combo_lbrc {
+            timeout-ms = <30>;
+            key-positions = <11 12>;
+            bindings = <&kp LBRC>;
+        };
+
+        combo_rbrc {
+            timeout-ms = <30>;
+            key-positions = <12 13>;
+            bindings = <&kp RBRC>;
+        };
+
+        // Alt+Tab shortcuts
+        combo_alt_tab {
+            timeout-ms = <40>;
+            key-positions = <1 11>;
+            bindings = <&kp LA(TAB)>;
+        };
+
+        combo_alt_shift_tab {
+            timeout-ms = <40>;
+            key-positions = <1 21>;
+            bindings = <&kp LA(LS(TAB))>;
+        };
+
+        // Windows shortcuts
+        combo_win_left {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&kp LG(LEFT)>;
+            layers = <NAV NAV_OSM>;
+        };
+
+        combo_win_right {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&kp LG(RIGHT)>;
+            layers = <NAV NAV_OSM>;
+        };
+
+        // Windows management layer
+        combo_win_layer {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&sl WIN>;
+            layers = <BASE NAV NUM SYM FUN>;
+        };
+
+        combo_win_layer_osm {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&sl WIN_OSM>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM>;
+        };
+
+        // Adjustment layer
+        combo_adj {
+            timeout-ms = <50>;
+            key-positions = <33 35>;
+            bindings = <&mo ADJ>;
+        };
+
+        // Mirror layers
+        combo_mirror_hrm {
+            timeout-ms = <100>;
+            key-positions = <31 32>;
+            bindings = <&sl BASE_MIR>;
+            layers = <BASE NAV NUM SYM FUN WIN>;
+        };
+
+        combo_mirror_osm {
+            timeout-ms = <100>;
+            key-positions = <32 33>;
+            bindings = <&sl BASE_MIR>;
+            layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM WIN_OSM>;
+        };
+
+        // Emergency return
+        combo_base_return {
+            timeout-ms = <100>;
+            key-positions = <0 9>;
+            bindings = <&to BASE>;
+        };
     };
 
-    combo_tab {
-        timeout-ms = <40>;
-        key-positions = <0 1>;
-        bindings = <&kp TAB>;
+    macros {
+        // Programming shortcuts
+        arrow_fn: arrow_fn {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL &kp GT &kp SPACE>;
+        };
+
+        console_log: console_log {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp O &kp N &kp S &kp O &kp L &kp E &kp DOT &kp L &kp O &kp G &kp LPAR>;
+        };
+
+        // Windows shortcuts
+        win_run: win_run {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(R)>;
+        };
+
+        win_settings: win_settings {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(I)>;
+        };
+
+        win_lock: win_lock {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(L)>;
+        };
     };
 
-    combo_del {
-        timeout-ms = <40>;
-        key-positions = <7 8>;
-        bindings = <&kp DEL>;
-    };
+    keymap {
+        compatible = "zmk,keymap";
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // MOUSE COMBOS - KEEP EXISTING (well-designed for split keyboard)
-    // ═══════════════════════════════════════════════════════════════════════════
+        // Base layer with home row mods
+        base_layer {
+            bindings = <
+&kp Q           &kp W           &kp E            &kp R             &kp T              &kp Y         &kp U             &kp I            &kp O           &kp P
+&mt LGUI A      &mt LALT S      &mt LCTRL D      &mt LSHFT F       &kp G              &kp H         &mt RSHFT J       &mt RCTRL K      &mt RALT L      &mt RGUI SEMI
+&kp Z           &kp X           &kp C            &kp V             &kp B              &kp N         &kp M             &kp COMMA        &kp DOT         &kp FSLH
+&kp LCTRL       &kp LGUI        &kp LALT         &lt NUM ESC       &lt NAV SPACE      &none         &kp RET           &lt SYM BSPC                     &sl FUN
+            >;
+        };
 
-    combo_left_click_l {
-        timeout-ms = <30>;
-        key-positions = <23 24>;  // V + B
-        bindings = <&mkp LCLK>;
-    };
+        nav_layer {
+            bindings = <
+&kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
+&sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &mkp LCLK         &mkp MCLK        &mkp RCLK       &kp BSLH
+&trans          &trans          &trans           &trans            &trans             &trans        &sl WIN           &trans                           &trans
+            >;
+        };
 
-    combo_right_click_l {
-        timeout-ms = <30>;
-        key-positions = <24 25>;  // B + N
-        bindings = <&mkp RCLK>;
-    };
+        num_layer {
+            bindings = <
+&kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT           &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
+&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCRLK
+&kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH           &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
+&trans          &trans          &trans           &trans            &kp N0             &trans        &trans            &kp MINUS                        &kp DOT
+            >;
+        };
 
-    combo_middle_click_l {
-        timeout-ms = <30>;
-        key-positions = <23 25>;  // V + N (diagonal - keep existing)
-        bindings = <&mkp MCLK>;
-    };
+        sym_layer {
+            bindings = <
+&kp LBRC        &kp AMPS        &kp ASTRK        &kp LPAR          &kp RBRC           &arrow_fn     &kp UNDER         &kp PLUS         &kp PIPE        &kp TILDE
+&kp DQT         &kp DLLR        &kp PRCNT        &kp CARET         &kp PLUS           &trans        &sk RSHFT         &sk RCTRL        &sk RALT        &sk RGUI
+&kp TILDE       &kp EXCL        &kp AT           &kp HASH          &kp PIPE           &console_log  &kp MINUS         &kp EQUAL        &kp COLON       &kp QMARK
+&trans          &trans          &trans           &kp LPAR          &kp UNDER          &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_left_click_r {
-        timeout-ms = <30>;
-        key-positions = <25 26>;  // N + M
-        bindings = <&mkp LCLK>;
-    };
+        fun_layer {
+            bindings = <
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
+&kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
+&trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
+            >;
+        };
 
-    combo_right_click_r {
-        timeout-ms = <30>;
-        key-positions = <26 27>;  // M + comma
-        bindings = <&mkp RCLK>;
-    };
+        win_layer {
+            bindings = <
+&kp LG(TAB)     &kp LA(TAB)     &kp LC(LA(TAB))  &kp LC(LG(RIGHT)) &kp LC(LG(D))      &kp LA(LS(TAB)) &kp LG(N7)      &kp LG(N8)       &kp LG(N9)      &win_lock
+&kp LG(LEFT)    &kp LG(DOWN)    &kp LG(UP)       &kp LG(RIGHT)     &kp LG(D)          &kp LG(Z)     &kp LG(N4)        &kp LG(N5)       &kp LG(N6)      &win_settings
+&win_run        &kp LG(X)       &kp LG(C)        &kp LG(V)         &kp LC(LG(F4))     &kp LG(M)     &kp LG(N1)        &kp LG(N2)       &kp LG(N3)      &kp LG(SEMI)
+&trans          &trans          &trans           &kp LC(LG(LEFT))  &trans             &trans        &kp LG(N0)        &trans                           &trans
+            >;
+        };
 
-    combo_middle_click_r {
-        timeout-ms = <30>;
-        key-positions = <25 27>;  // N + comma (diagonal - keep existing)
-        bindings = <&mkp MCLK>;
-    };
+        base_osm_layer {
+            bindings = <
+&kp Q           &kp W           &kp E            &kp R             &kp T              &kp Y         &kp U             &kp I            &kp O           &kp P
+&kp A           &kp S           &kp D            &kp F             &kp G              &kp H         &kp J             &kp K            &kp L           &kp SEMI
+&kp Z           &kp X           &kp C            &kp V             &kp B              &kp N         &kp M             &kp COMMA        &kp DOT         &kp FSLH
+&kp LCTRL       &kp LGUI        &kp LALT         &lt NUM_OSM ESC   &lt NAV_OSM SPACE  &none         &kp RET           &lt SYM_OSM BSPC                 &sk LSHFT
+            >;
+        };
 
-    combo_scroll_up_l {
-        timeout-ms = <40>;
-        key-positions = <11 21>;  // S + X
-        bindings = <&msc SCRL_UP>;
-    };
+        nav_osm_layer {
+            bindings = <
+&kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
+&sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &mkp LCLK         &mkp MCLK        &mkp RCLK       &kp BSLH
+&trans          &trans          &trans           &trans            &trans             &trans        &sl WIN_OSM       &trans                           &trans
+            >;
+        };
 
-    combo_scroll_up_r {
-        timeout-ms = <40>;
-        key-positions = <18 28>;  // L + dot
-        bindings = <&msc SCRL_UP>;
-    };
+        num_osm_layer {
+            bindings = <
+&kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT           &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
+&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCRLK
+&kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH           &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
+&trans          &trans          &trans           &trans            &kp N0             &trans        &trans            &kp MINUS                        &kp DOT
+            >;
+        };
 
-    combo_scroll_down_l {
-        timeout-ms = <40>;
-        key-positions = <12 22>;  // D + C
-        bindings = <&msc SCRL_DOWN>;
-    };
+        sym_osm_layer {
+            bindings = <
+&kp LBRC        &kp AMPS        &kp ASTRK        &kp LPAR          &kp RBRC           &arrow_fn     &kp UNDER         &kp PLUS         &kp PIPE        &kp TILDE
+&kp DQT         &kp DLLR        &kp PRCNT        &kp CARET         &kp PLUS           &trans        &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
+&kp TILDE       &kp EXCL        &kp AT           &kp HASH          &kp PIPE           &console_log  &kp MINUS         &kp EQUAL        &kp COLON       &kp QMARK
+&trans          &trans          &trans           &kp LPAR          &kp UNDER          &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_scroll_down_r {
-        timeout-ms = <40>;
-        key-positions = <17 27>;  // K + comma
-        bindings = <&msc SCRL_DOWN>;
-    };
+        fun_osm_layer {
+            bindings = <
+&kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
+&kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
+&trans          &trans          &trans           &kp SPACE         &kp TAB            &trans        &trans            &kp DEL                          &trans
+            >;
+        };
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // IMPROVED PROGRAMMING COMBOS - BILATERAL ACCESS
-    // ═══════════════════════════════════════════════════════════════════════════
+        win_osm_layer {
+            bindings = <
+&kp LG(TAB)     &kp LA(TAB)     &kp LC(LA(TAB))  &kp LC(LG(RIGHT)) &kp LC(LG(D))      &kp LA(LS(TAB)) &kp LG(N7)      &kp LG(N8)       &kp LG(N9)      &win_lock
+&kp LG(LEFT)    &kp LG(DOWN)    &kp LG(UP)       &kp LG(RIGHT)     &kp LG(D)          &kp LG(Z)     &kp LG(N4)        &kp LG(N5)       &kp LG(N6)      &win_settings
+&win_run        &kp LG(X)       &kp LG(C)        &kp LG(V)         &kp LC(LG(F4))     &kp LG(M)     &kp LG(N1)        &kp LG(N2)       &kp LG(N3)      &kp LG(SEMI)
+&trans          &trans          &trans           &kp LC(LG(LEFT))  &trans             &trans        &kp LG(N0)        &trans                           &trans
+            >;
+        };
 
-    // Replace awkward bracket combos with comfortable parentheses
-    combo_lpar_left {
-        timeout-ms = <30>;
-        key-positions = <13 14>;  // F + G
-        bindings = <&kp LPAR>;
-    };
+        adj_layer {
+            bindings = <
+&bootloader     &trans          &trans           &trans            &to BASE           &to BASE_OSM  &trans            &trans           &trans          &bootloader
+&bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2      &bt BT_SEL 3       &kp C_BRI_DN  &kp C_BRI_UP      &kp C_VOL_DN     &kp C_VOL_UP    &kp C_MUTE
+&sys_reset      &trans          &trans           &trans            &trans             &trans        &trans            &trans           &trans          &sys_reset
+&trans          &trans          &trans           &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_rpar_left {
-        timeout-ms = <30>;
-        key-positions = <14 15>;  // G + H  
-        bindings = <&kp RPAR>;
-    };
+        // Core mirror layers
+        base_mir_layer {
+            bindings = <
+&kp P           &kp O           &kp I            &kp U             &kp Y              &kp T         &kp R             &kp E            &kp W           &kp Q
+&mt RGUI SEMI   &mt RALT L      &mt RCTRL K      &mt RSHFT J       &kp H              &kp G         &mt LSHFT F       &mt LCTRL D      &mt LALT S      &mt LGUI A
+&kp FSLH        &kp DOT         &kp COMMA        &kp M             &kp N              &kp B         &kp V             &kp C            &kp X           &kp Z
+&sl FUN_MIR     &lt SYM_MIR BSPC &kp RET        &none             &lt NAV_MIR SPACE  &lt NUM_MIR ESC &kp LALT        &kp LGUI                         &kp LCTRL
+            >;
+        };
 
-    combo_lpar_right {
-        timeout-ms = <30>;
-        key-positions = <15 16>;  // H + J
-        bindings = <&kp LPAR>;
-    };
+        nav_mir_layer {
+            bindings = <
+&kp DEL         &kp END         &kp UP           &kp HOME          &kp PG_UP          &kp LC(R)     &kp LC(W)         &kp LC(T)        &kp TAB         &kp ESC
+&kp SQT         &kp RIGHT       &kp DOWN         &kp LEFT          &kp PG_DN          &kp LC(G)     &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
+&kp BSLH        &mkp RCLK       &mkp MCLK        &mkp LCLK         &kp INS            &kp LC(F)     &kp LC(V)         &kp LC(C)        &kp LC(X)       &kp LC(Z)
+&trans          &trans          &sl WIN_MIR      &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_rpar_right {
-        timeout-ms = <30>;
-        key-positions = <16 17>;  // J + K
-        bindings = <&kp RPAR>;
-    };
+        num_mir_layer {
+            bindings = <
+&kp PSCRN       &kp F9          &kp F8           &kp F7            &kp F12            &kp RBKT      &kp N9            &kp N8           &kp N7          &kp LBKT
+&kp SCRLK       &kp F6          &kp F5           &kp F4            &kp F11            &kp EQUAL     &kp N6            &kp N5           &kp N4          &kp SQT
+&kp PAUSE_BREAK &kp F3          &kp F2           &kp F1            &kp F10            &kp BSLH      &kp N3            &kp N2           &kp N1          &kp GRAVE
+&kp DOT         &kp MINUS       &trans           &trans            &kp N0             &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    // Keep brackets but in more comfortable positions
-    combo_lbkt_left {
-        timeout-ms = <30>;
-        key-positions = <12 13>;  // D + F
-        bindings = <&kp LBKT>;
-    };
+        sym_mir_layer {
+            bindings = <
+&kp TILDE       &kp PIPE        &kp PLUS         &kp UNDER         &arrow_fn          &kp RBRC      &kp LPAR          &kp ASTRK        &kp AMPS        &kp LBRC
+&sk RGUI        &sk RALT        &sk RCTRL        &sk RSHFT         &trans             &kp PLUS      &kp CARET         &kp PRCNT        &kp DLLR        &kp DQT
+&kp QMARK       &kp COLON       &kp EQUAL        &kp MINUS         &console_log       &kp PIPE      &kp HASH          &kp AT           &kp EXCL        &kp TILDE
+&trans          &trans          &trans           &trans            &kp UNDER          &kp LPAR      &trans            &trans                           &trans
+            >;
+        };
 
-    combo_rbkt_left {
-        timeout-ms = <30>;
-        key-positions = <13 15>;  // F + H (skip G)
-        bindings = <&kp RBKT>;
-    };
+        fun_mir_layer {
+            bindings = <
+&trans          &trans          &kp C_NEXT       &kp C_VOL_UP      &kp C_BRI_UP       &kp PSCRN     &kp F9            &kp F8           &kp F7          &kp F12
+&trans          &kp C_PP        &kp C_PREV       &kp C_VOL_DN      &kp C_BRI_DN       &kp SCRLK     &kp F6            &kp F5           &kp F4          &kp F11
+&trans          &trans          &trans           &kp C_MUTE        &trans             &kp PAUSE_BREAK &kp F3          &kp F2           &kp F1          &kp F10
+&trans          &kp DEL         &trans           &trans            &kp TAB            &kp SPACE     &trans            &trans                           &trans
+            >;
+        };
 
-    combo_lbkt_right {
-        timeout-ms = <30>;
-        key-positions = <15 17>;  // H + K (skip J)
-        bindings = <&kp LBKT>;
-    };
+        win_mir_layer {
+            bindings = <
+&win_lock       &kp LG(N9)      &kp LG(N8)       &kp LG(N7)        &kp LA(LS(TAB))    &kp LC(LG(D)) &kp LC(LG(RIGHT)) &kp LC(LA(TAB))  &kp LA(TAB)     &kp LG(TAB)
+&win_settings   &kp LG(N6)      &kp LG(N5)       &kp LG(N4)        &kp LG(Z)          &kp LG(D)     &kp LG(RIGHT)     &kp LG(UP)       &kp LG(DOWN)    &kp LG(LEFT)
+&kp LG(SEMI)    &kp LG(N3)      &kp LG(N2)       &kp LG(N1)        &kp LG(M)          &kp LC(LG(F4)) &kp LG(V)        &kp LG(C)        &kp LG(X)       &win_run
+&trans          &trans          &kp LG(N0)       &trans            &trans             &kp LC(LG(LEFT)) &trans         &trans                           &trans
+            >;
+        };
 
-    combo_rbkt_right {
-        timeout-ms = <30>;
-        key-positions = <17 18>;  // K + L
-        bindings = <&kp RBKT>;
-    };
+        // ═══════════════════════════════════════════════════════════════════════════
+        // OSM MIRROR LAYERS
+        // ═══════════════════════════════════════════════════════════════════════════
 
-    // Braces using vertical positions (non-conflicting)
-    combo_lbrc_left {
-        timeout-ms = <30>;
-        key-positions = <11 12>;  // S + D
-        bindings = <&kp LBRC>;
-    };
+        base_osm_mir_layer {
+            bindings = <
+&kp P           &kp O           &kp I            &kp U             &kp Y              &kp T         &kp R             &kp E            &kp W           &kp Q
+&kp SEMI        &kp L           &kp K            &kp J             &kp H              &kp G         &kp F             &kp D            &kp S           &kp A
+&kp FSLH        &kp DOT         &kp COMMA        &kp M             &kp N              &kp B         &kp V             &kp C            &kp X           &kp Z
+&sk LSHFT       &lt SYM_OSM_MIR BSPC &kp RET     &none             &lt NAV_OSM_MIR SPACE &lt NUM_OSM_MIR ESC &kp LALT &kp LGUI                       &kp LCTRL
+            >;
+        };
 
-    combo_rbrc_left {
-        timeout-ms = <30>;
-        key-positions = <12 14>;  // D + G (skip F)
-        bindings = <&kp RBRC>;
-    };
+        nav_osm_mir_layer {
+            bindings = <
+&kp DEL         &kp END         &kp UP           &kp HOME          &kp PG_UP          &kp LC(R)     &kp LC(W)         &kp LC(T)        &kp TAB         &kp ESC
+&kp SQT         &kp RIGHT       &kp DOWN         &kp LEFT          &kp PG_DN          &kp LC(G)     &sk LSHFT         &sk LCTRL        &sk LALT        &sk LGUI
+&mouse_precision &dpi_cycle     &mkp RCLK        &mkp MCLK         &mkp LCLK          &kp LC(F)     &kp LC(V)         &kp LC(C)        &kp LC(X)       &kp LC(Z)
+&trans          &trans          &sl WIN_OSM_MIR  &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_lbrc_right {
-        timeout-ms = <30>;
-        key-positions = <15 18>;  // H + L (skip J/K)
-        bindings = <&kp LBRC>;
-    };
+        num_osm_mir_layer {
+            bindings = <
+&kp PSCRN       &kp F9          &kp F8           &kp F7            &kp F12            &kp RBKT      &kp N9            &kp N8           &kp N7          &kp LBKT
+&kp SCRLK       &kp F6          &kp F5           &kp F4            &kp F11            &kp EQUAL     &kp N6            &kp N5           &kp N4          &kp SQT
+&kp PAUSE_BREAK &kp F3          &kp F2           &kp F1            &kp F10            &kp BSLH      &kp N3            &kp N2           &kp N1          &kp GRAVE
+&kp DOT         &kp MINUS       &trans           &trans            &kp N0             &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_rbrc_right {
-        timeout-ms = <30>;
-        key-positions = <17 19>;  // K + ;
-        bindings = <&kp RBRC>;
-    };
+        sym_osm_mir_layer {
+            bindings = <
+&kp TILDE       &kp PIPE        &kp PLUS         &kp UNDER         &arrow_fn          &kp RBRC      &kp LPAR          &kp ASTRK        &kp AMPS        &kp LBRC
+&sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &trans             &kp PLUS      &kp CARET         &kp PRCNT        &kp DLLR        &kp DQT
+&kp QMARK       &kp COLON       &kp EQUAL        &kp MINUS         &console_log       &kp PIPE      &kp HASH          &kp AT           &kp EXCL        &kp TILDE
+&trans          &trans          &trans           &trans            &kp UNDER          &kp LPAR      &trans            &trans                           &trans
+            >;
+        };
 
-    // Programming symbols - using non-conflicting positions
-    combo_underscore_left {
-        timeout-ms = <30>;
-        key-positions = <21 22>;  // X + C
-        bindings = <&kp UNDER>;
-    };
+        fun_osm_mir_layer {
+            bindings = <
+&trans          &sl FUNX_OSM_MIR &kp C_NEXT      &kp C_VOL_UP      &kp C_BRI_UP       &kp PSCRN     &kp F9            &kp F8           &kp F7          &kp F12
+&trans          &kp C_PP        &kp C_PREV       &kp C_VOL_DN      &kp C_BRI_DN       &kp SCRLK     &kp F6            &kp F5           &kp F4          &kp F11
+&trans          &trans          &trans           &kp C_MUTE        &trans             &kp PAUSE_BREAK &kp F3          &kp F2           &kp F1          &kp F10
+&trans          &kp DEL         &trans           &trans            &kp TAB            &kp SPACE     &trans            &trans                           &trans
+            >;
+        };
 
-    combo_underscore_right {
-        timeout-ms = <30>;
-        key-positions = <27 28>;  // comma + dot
-        bindings = <&kp UNDER>;
-    };
+        funx_osm_mir_layer {
+            bindings = <
+&kp F23         &teams_mute     &spotify_play_pause &discord_mute   &obs_start_stop    &kp F22       &kp F21           &kp F20          &kp F19         &kp F24
+&kp F22         &kp F21         &kp F20          &discord_deafen   &obs_pause         &kp F22       &kp F17           &kp F16          &kp F15         &kp F18
+&kp F22         &kp F21         &kp F20          &kp F19           &kp F18            &kp F17       &kp F16           &kp F15          &kp F14         &kp F13
+&trans          &kp F24         &kp F23          &trans            &trans             &trans        &trans            &trans                           &trans
+            >;
+        };
 
-    combo_arrow_fn_left {
-        timeout-ms = <30>;
-        key-positions = <22 23>;  // C + V
-        bindings = <&arrow_fn>;
-    };
-
-    combo_arrow_fn_right {
-        timeout-ms = <30>;
-        key-positions = <26 28>;  // M + dot (skip comma)
-        bindings = <&arrow_fn>;
-    };
-
-    combo_equal_equal_left {
-        timeout-ms = <30>;
-        key-positions = <20 21>;  // Z + X
-        bindings = <&kp EQUAL &kp EQUAL>;
-    };
-
-    combo_equal_equal_right {
-        timeout-ms = <30>;
-        key-positions = <28 29>;  // dot + slash
-        bindings = <&kp EQUAL &kp EQUAL>;
-    };
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // BILATERAL NAVIGATION SHORTCUTS
-    // ═══════════════════════════════════════════════════════════════════════════
-
-    // Alt+Tab - keep left, add right
-    combo_alt_tab_left {
-        timeout-ms = <40>;
-        key-positions = <1 11>;   // W + S (existing)
-        bindings = <&kp LA(TAB)>;
-    };
-
-    combo_alt_tab_right {
-        timeout-ms = <40>;
-        key-positions = <8 18>;   // I + L
-        bindings = <&kp LA(TAB)>;
-    };
-
-    // Alt+Shift+Tab
-    combo_alt_shift_tab_left {
-        timeout-ms = <40>;
-        key-positions = <1 21>;   // W + X (existing)
-        bindings = <&kp LA(LS(TAB))>;
-    };
-
-    combo_alt_shift_tab_right {
-        timeout-ms = <40>;
-        key-positions = <8 28>;   // I + dot
-        bindings = <&kp LA(LS(TAB))>;
-    };
-
-    // Common Ctrl shortcuts
-    combo_ctrl_a_left {
-        timeout-ms = <40>;
-        key-positions = <0 10>;   // Q + A
-        bindings = <&kp LC(A)>;
-    };
-
-    combo_ctrl_a_right {
-        timeout-ms = <40>;
-        key-positions = <9 19>;   // P + ;
-        bindings = <&kp LC(A)>;
-    };
-
-    combo_ctrl_s_left {
-        timeout-ms = <40>;
-        key-positions = <10 11>;  // A + S
-        bindings = <&kp LC(S)>;
-    };
-
-    combo_ctrl_s_right {
-        timeout-ms = <40>;
-        key-positions = <18 19>;  // L + ;
-        bindings = <&kp LC(S)>;
-    };
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // LAYER ACCESS - KEEP WORKING ONES, IMPROVE TIMING
-    // ═══════════════════════════════════════════════════════════════════════════
-
-    combo_bt_layer {
-        timeout-ms = <50>;
-        key-positions = <4 5>;    // T + Y (existing)
-        bindings = <&sl BT>;
-    };
-
-    combo_bt_layer_osm {
-        timeout-ms = <50>;
-        key-positions = <4 5>;
-        bindings = <&sl BT_OSM>;
-        layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM WIN_OSM>;
-    };
-
-    combo_caps {
-        timeout-ms = <50>;
-        key-positions = <13 16>;  // F + J (existing)
-        bindings = <&caps_word>;
-    };
-
-    combo_funx_layer {
-        timeout-ms = <50>;
-        key-positions = <3 4>;    // R + T (existing)
-        bindings = <&sl FUNX>;
-        layers = <BASE FUN BASE_OSM FUN_OSM>;
-    };
-
-    combo_win_layer {
-        timeout-ms = <50>;
-        key-positions = <30 31>;  // Thumb cluster
-        bindings = <&sl WIN>;
-        layers = <BASE NAV NUM SYM FUN FUNX>;
-    };
-
-    combo_win_layer_osm {
-        timeout-ms = <50>;
-        key-positions = <30 31>;
-        bindings = <&sl WIN_OSM>;
-        layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM>;
-    };
-
-    combo_adj {
-        timeout-ms = <50>;
-        key-positions = <33 35>;  // Right thumb cluster
-        bindings = <&mo ADJ>;
-    };
-
-    combo_mirror_hrm {
-        timeout-ms = <100>;
-        key-positions = <31 32>;  // Thumb cluster
-        bindings = <&sl BASE_MIR>;
-        layers = <BASE NAV NUM SYM FUN FUNX WIN>;
-    };
-
-    combo_mirror_osm {
-        timeout-ms = <100>;
-        key-positions = <32 33>;  // Thumb cluster
-        bindings = <&sl BASE_OSM_MIR>;
-        layers = <BASE_OSM NAV_OSM NUM_OSM SYM_OSM FUN_OSM FUNX_OSM WIN_OSM>;
-    };
-
-    combo_base_return {
-        timeout-ms = <100>;
-        key-positions = <0 9>;    // Q + P (emergency)
-        bindings = <&to BASE>;
+        win_osm_mir_layer {
+            bindings = <
+&win_lock       &kp LG(N9)      &kp LG(N8)       &kp LG(N7)        &kp LA(LS(TAB))    &kp LC(LG(D)) &kp LC(LG(RIGHT)) &kp LC(LA(TAB))  &kp LA(TAB)     &kp LG(TAB)
+&win_settings   &kp LG(N6)      &kp LG(N5)       &kp LG(N4)        &kp LG(Z)          &kp LG(D)     &kp LG(RIGHT)     &kp LG(UP)       &kp LG(DOWN)    &kp LG(LEFT)
+&kp LG(SEMI)    &kp LG(N3)      &kp LG(N2)       &kp LG(N1)        &kp LG(M)          &kp LC(LG(F4)) &kp LG(V)        &kp LG(C)        &kp LG(X)       &win_run
+&trans          &trans          &kp LG(N0)       &trans            &trans             &kp LC(LG(LEFT)) &trans         &trans                           &trans
+            >;
+        };
     };
 };
