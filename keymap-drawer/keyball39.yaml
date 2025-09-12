@@ -159,7 +159,7 @@ layers:
   - F4
   - F5
   - F6
-  - SCROLLLOCK
+  - SLCK
   - $$mdi:brightness-7$$
   - $$mdi:volume-low$$
   - $$mdi:skip-previous$$
