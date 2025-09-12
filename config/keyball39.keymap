@@ -254,7 +254,7 @@
             bindings = <
 &kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
 &sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
-&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp K_MENU        &kp PSCRN        &kp SLCK        &kp BSLH
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp MENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
                                                  &trans            &trans             &sl WIN       &trans            &trans
             >;
         };
@@ -262,7 +262,7 @@
         num_layer {
             bindings = <
 &kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT           &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
-&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCRLK
+&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCROLLLOCK
 &kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH           &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
                                                  &trans            &kp N0             &trans        &kp MINUS         &kp DOT
             >;
@@ -280,7 +280,7 @@
         fun_layer {
             bindings = <
 &kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX
-&kp F11         &kp F4          &kp F5           &kp F6            &kp SLCK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SCROLLLOCK    &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
 &kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
                                                  &kp SPACE         &kp TAB            &trans        &kp DEL           &trans
             >;
@@ -308,7 +308,7 @@
             bindings = <
 &kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)          &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
 &sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)          &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
-&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp K_MENU        &kp PSCRN        &kp SLCK        &kp BSLH
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)          &kp INS       &kp MENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
                                                  &trans            &trans             &sl WIN_OSM   &trans            &trans
             >;
         };
@@ -316,7 +316,7 @@
         num_osm_layer {
             bindings = <
 &kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT           &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
-&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCRLK
+&kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL          &kp F11       &kp F4            &kp F5           &kp F6          &kp SCROLLLOCK
 &kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH           &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
                                                  &trans            &kp N0             &trans        &kp MINUS         &kp DOT
             >;
@@ -334,7 +334,7 @@
         fun_osm_layer {
             bindings = <
 &kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX_OSM
-&kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SCROLLLOCK    &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
 &kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
                                                  &kp SPACE         &kp TAB            &trans        &kp DEL           &trans
             >;
