@@ -280,7 +280,7 @@
         fun_layer {
             bindings = <
 &kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN          &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX
-&kp F11         &kp F4          &kp F5           &kp F6            &kp SCRLK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
+&kp F11         &kp F4          &kp F5           &kp F6            &kp SLCK          &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
 &kp F10         &kp F1          &kp F2           &kp F3            &kp PAUSE_BREAK    &trans        &kp C_MUTE        &trans           &trans          &trans
                                                  &kp SPACE         &kp TAB            &trans        &kp DEL           &trans
             >;
