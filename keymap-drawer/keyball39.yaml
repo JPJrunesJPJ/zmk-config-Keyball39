@@ -126,7 +126,7 @@ layers:
   - '*'
   - (
   - '}'
-  - '&arrow_fn'
+  - {t: '=', s: +}
   - _
   - +
   - '|'
@@ -146,7 +146,7 @@ layers:
   - '@'
   - '#'
   - '|'
-  - '&console_log'
+  - {t: '-', s: _}
   - {t: '-', s: _}
   - {t: '=', s: +}
   - ':'
@@ -210,7 +210,7 @@ layers:
   - {t: Gui+7, s: Gui+&}
   - {t: Gui+8, s: Gui+*}
   - {t: Gui+9, s: Gui+(}
-  - '&win_lock'
+  - Gui+L
   - Gui+$$mdi:arrow-left-bold$$
   - Gui+$$mdi:arrow-down-bold$$
   - Gui+$$mdi:arrow-up-bold$$
@@ -220,8 +220,8 @@ layers:
   - {t: Gui+4, s: Gui+$}
   - {t: Gui+5, s: Gui+%}
   - {t: Gui+6, s: Gui+^}
-  - '&win_settings'
-  - '&win_run'
+  - Gui+I
+  - Gui+R
   - {t: X, h: '$$mdi:apple-keyboard-command$$'}
   - {t: C, h: '$$mdi:apple-keyboard-command$$'}
   - {t: V, h: '$$mdi:apple-keyboard-command$$'}
@@ -366,7 +366,7 @@ layers:
   - '*'
   - (
   - '}'
-  - '&arrow_fn'
+  - {t: '=', s: +}
   - _
   - +
   - '|'
@@ -386,7 +386,7 @@ layers:
   - '@'
   - '#'
   - '|'
-  - '&console_log'
+  - {t: '-', s: _}
   - {t: '-', s: _}
   - {t: '=', s: +}
   - ':'
@@ -450,7 +450,7 @@ layers:
   - {t: Gui+7, s: Gui+&}
   - {t: Gui+8, s: Gui+*}
   - {t: Gui+9, s: Gui+(}
-  - '&win_lock'
+  - Gui+L
   - Gui+$$mdi:arrow-left-bold$$
   - Gui+$$mdi:arrow-down-bold$$
   - Gui+$$mdi:arrow-up-bold$$
@@ -460,8 +460,8 @@ layers:
   - {t: Gui+4, s: Gui+$}
   - {t: Gui+5, s: Gui+%}
   - {t: Gui+6, s: Gui+^}
-  - '&win_settings'
-  - '&win_run'
+  - Gui+I
+  - Gui+R
   - {t: X, h: '$$mdi:apple-keyboard-command$$'}
   - {t: C, h: '$$mdi:apple-keyboard-command$$'}
   - {t: V, h: '$$mdi:apple-keyboard-command$$'}
@@ -487,10 +487,10 @@ layers:
   - F21
   - F22
   - F23
-  - '&teams_mute'
-  - '&spotify_play_pause'
-  - '&discord_mute'
-  - {t: '&obs_start_stop', type: held}
+  - Ctl+Sft+M
+  - $$mdi:play-pause$$
+  - Ctl+Sft+M
+  - {t: F13, type: held}
   - F18
   - F15
   - F16
@@ -499,8 +499,8 @@ layers:
   - F19
   - F20
   - F21
-  - '&discord_deafen'
-  - '&obs_pause'
+  - Ctl+Sft+D
+  - F14
   - F13
   - F14
   - F15
@@ -527,10 +527,10 @@ layers:
   - F21
   - F22
   - F23
-  - '&teams_mute'
-  - '&spotify_play_pause'
-  - '&discord_mute'
-  - {t: '&obs_start_stop', type: held}
+  - Ctl+Sft+M
+  - $$mdi:play-pause$$
+  - Ctl+Sft+M
+  - {t: F13, type: held}
   - F18
   - F15
   - F16
@@ -539,8 +539,8 @@ layers:
   - F19
   - F20
   - F21
-  - '&discord_deafen'
-  - '&obs_pause'
+  - Ctl+Sft+D
+  - F14
   - F13
   - F14
   - F15
