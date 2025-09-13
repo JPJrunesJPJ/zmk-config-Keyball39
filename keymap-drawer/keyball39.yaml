@@ -67,7 +67,7 @@ layers:
   - Ctl+V
   - Ctl+F
   - INS
-  - MENU
+  - CMENU
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
@@ -307,7 +307,7 @@ layers:
   - Ctl+V
   - Ctl+F
   - INS
-  - MENU
+  - CMENU
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
