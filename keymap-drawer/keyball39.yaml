@@ -31,8 +31,12 @@ layers:
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:keyboard-esc$$', h: num}
   - {t: '$$mdi:keyboard-space$$', h: nav}
+  - $$mdi:keyboard-tab$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', h: sym}
   - {t: fun, h: '$$mdi:gesture-tap-hold$$'}
@@ -67,11 +71,15 @@ layers:
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - {t: win, h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-shift$$
   num:
   - {t: '[', s: '{'}
   - {t: '7', s: '&'}
@@ -103,11 +111,15 @@ layers:
   - F2
   - F3
   - PAUSE BREAK
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {type: held}
   - {t: '0', s: )}
-  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '-', s: _}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: ., s: '>'}
+  - $$mdi:apple-keyboard-shift$$
   sym:
   - '{'
   - '&'
@@ -139,11 +151,15 @@ layers:
   - {t: '=', s: +}
   - ':'
   - '?'
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - (
   - _
+  - )
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-shift$$
   fun:
   - F12
   - F7
@@ -175,11 +191,15 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - $$mdi:keyboard-space$$
   - $$mdi:keyboard-tab$$
+  - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:backspace-reverse-outline$$
-  - {type: held}
+  - {t: '$$mdi:apple-keyboard-shift$$', type: held}
   win:
   - Gui+$$mdi:keyboard-tab$$
   - Alt+$$mdi:keyboard-tab$$
@@ -211,11 +231,15 @@ layers:
   - {t: Gui+2, s: Gui+@}
   - {t: Gui+3, s: Gui+#}
   - {t: Gui+;, s: 'Gui+:'}
-  - {t: 'Ctl+Gui+$$mdi:arrow-left-bold$$', type: held alternate}
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
+  - Ctl+Gui+$$mdi:arrow-left-bold$$
   - {type: held}
-  - {t: Gui+0, s: Gui+), type: held}
+  - {t: 'Gui+,', s: Gui+<, type: held}
+  - {t: Gui+0, s: Gui+)}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-shift$$
   base_osm:
   - Q
   - W
@@ -247,8 +271,12 @@ layers:
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:keyboard-esc$$', h: num_osm}
   - {t: '$$mdi:keyboard-space$$', h: nav_osm}
+  - $$mdi:keyboard-tab$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', h: sym_osm}
   - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
@@ -283,11 +311,15 @@ layers:
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - {t: win_osm, h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   num_osm:
   - {t: '[', s: '{'}
   - {t: '7', s: '&'}
@@ -319,11 +351,15 @@ layers:
   - F2
   - F3
   - PAUSE BREAK
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
   - {type: held}
   - {t: '0', s: )}
-  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '-', s: _}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: ., s: '>'}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   sym_osm:
   - '{'
   - '&'
@@ -344,7 +380,7 @@ layers:
   - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
-  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: RGUI, h: '$$mdi:gesture-tap-hold$$'}
   - '~'
   - '!'
   - '@'
@@ -355,11 +391,15 @@ layers:
   - {t: '=', s: +}
   - ':'
   - '?'
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
   - (
   - _
+  - )
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   fun_osm:
   - F12
   - F7
@@ -391,11 +431,15 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
   - $$mdi:keyboard-space$$
   - $$mdi:keyboard-tab$$
+  - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:backspace-reverse-outline$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   win_osm:
   - Gui+$$mdi:keyboard-tab$$
   - Alt+$$mdi:keyboard-tab$$
@@ -427,11 +471,15 @@ layers:
   - {t: Gui+2, s: Gui+@}
   - {t: Gui+3, s: Gui+#}
   - {t: Gui+;, s: 'Gui+:'}
-  - {t: 'Ctl+Gui+$$mdi:arrow-left-bold$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
+  - Ctl+Gui+$$mdi:arrow-left-bold$$
   - {type: held}
-  - {t: Gui+0, s: Gui+), type: held}
+  - {t: 'Gui+,', s: Gui+<, type: held}
+  - {t: Gui+0, s: Gui+)}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   funx:
   - F24
   - F19
@@ -463,11 +511,15 @@ layers:
   - F20
   - F21
   - F22
+  - $$mdi:apple-keyboard-control$$
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-shift$$', type: held}
   funx_osm:
   - F24
   - F19
@@ -499,11 +551,15 @@ layers:
   - F20
   - F21
   - F22
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
+  - {t: LGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   adj:
   - $$mdi:progress-download$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -537,43 +593,47 @@ layers:
   - {t: '$$mdi:backup-restore$$', type: bootloader}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
-- p: [16, 17]
+- p: [13, 14]
   k: $$mdi:keyboard-esc$$
 - p: [0, 1]
   k: $$mdi:keyboard-tab$$
 - p: [7, 8]
   k: $$mdi:backspace-reverse-outline$$
-- p: [13, 16]
+- p: [18, 13]
   k: $$mdi:alpha-w-box$$
 - p: [1, 2]
   k: {h: '[', s: '{'}
 - p: [2, 3]
   k: {h: ']', s: '}'}
-- p: [11, 12]
+- p: [16, 17]
   k: '{'
-- p: [12, 13]
+- p: [17, 18]
   k: '}'
-- p: [1, 11]
+- p: [1, 16]
   k: Alt+$$mdi:keyboard-tab$$
-- p: [1, 21]
+- p: [1, 26]
   k: Alt+Sft+$$mdi:keyboard-tab$$
-- p: [21, 22]
+- p: [26, 27]
   k: Gui+$$mdi:arrow-left-bold$$
   l: [nav, nav_osm]
-- p: [22, 23]
+- p: [27, 28]
   k: Gui+$$mdi:arrow-right-bold$$
   l: [nav, nav_osm]
-- p: [30, 31]
+- p: [34, 35]
   k: {t: win, h: '$$mdi:gesture-tap-hold$$'}
   l: [base, nav, num, sym, fun, funx]
-- p: [30, 31]
+- p: [34, 35]
   k: {t: win_osm, h: '$$mdi:gesture-tap-hold$$'}
   l: [base_osm, nav_osm, num_osm, sym_osm, fun_osm, funx_osm]
-- p: [32, 33]
+- p: [36, 37]
   k: adj
 - p: [0, 9]
   k: {t: base, h: toggle}
