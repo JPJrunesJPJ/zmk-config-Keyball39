@@ -240,7 +240,6 @@ combos {
     keymap {
         compatible = "zmk,keymap";
 
-        // Base layer with home row mods
 // Base layer with home row mods
         base_layer {
             bindings = <
@@ -325,10 +324,10 @@ combos {
 
         sym_osm_layer {
             bindings = <
-&kp LBRC        &kp AMPS        &kp ASTRK        &kp LPAR          &kp RBRC                                 &arrow_fn     &kp UNDER         &kp PLUS         &kp PIPE        &kp TILDE
+&kp LBRC        &kp AMPERSAND   &kp ASTERISK     &kp LPAR          &kp RBRC                                 &arrow_fn     &kp UNDERSCORE    &kp PLUS         &kp PIPE2       &kp TILDE
 &kp DQT         &kp DLLR        &kp PRCNT        &kp CARET         &kp PLUS                                 &trans        &sk RSHFT         &sk RCTRL        &sk RALT        &sk RGUI
-&kp TILDE       &kp EXCL        &kp AT           &kp HASH          &kp PIPE                                 &console_log  &kp MINUS         &kp EQUAL        &kp COLON       &kp QMARK
-&sk LCTRL       &sk LGUI        &sk LALT         &kp LPAR          &kp UNDER            &kp RPAR            &trans        &trans                                         &sk RSHFT
+&kp TILDE       &kp EXCL        &kp AT           &kp HASH          &kp PIPE2                                &console_log  &kp MINUS         &kp EQUAL        &kp COLON       &kp QMARK
+&sk LCTRL       &sk LGUI        &sk LALT         &kp LPAR          &kp UNDERSCORE       &kp RPAR            &trans        &trans                                         &sk RSHFT
             >;
         };
 
