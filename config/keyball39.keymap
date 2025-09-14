@@ -156,6 +156,25 @@
             key-positions = <0 9>;
             bindings = <&to BASE>;
         };
+
+        // Mouse click combos
+        combo_left_click {
+            timeout-ms = <30>;
+            key-positions = <25 26>;  // N+M
+            bindings = <&mkp LCLK>;
+        };
+
+        combo_right_click {
+            timeout-ms = <30>;
+            key-positions = <26 27>;  // M+,
+            bindings = <&mkp RCLK>;
+        };
+
+        combo_middle_click {
+            timeout-ms = <30>;
+            key-positions = <25 26 27>;  // N+M+,
+            bindings = <&mkp MCLK>;
+        };
     };
 
     macros {
