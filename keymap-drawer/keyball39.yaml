@@ -37,7 +37,7 @@ layers:
   - {t: '$$mdi:keyboard-tab$$', h: SYM}
   - {t: '$$mdi:keyboard-space$$', h: NUM}
   - {t: '$$mdi:keyboard-return$$', h: SCROLL}
-  - $$mdi:backspace-reverse-outline$$
+  - {t: '$$mdi:backspace-reverse-outline$$', h: NAV}
   - {t: '$$mdi:backspace$$', h: SYM}
   - {t: '$$mdi:keyboard-esc$$', h: SNIPE}
   NAV:
@@ -77,7 +77,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: WIN, h: '$$mdi:gesture-tap-hold$$'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-shift$$
   NUM:
@@ -100,7 +100,7 @@ layers:
   - F4
   - F5
   - F6
-  - SCROLLLOCK
+  - {t: '''', s: '"'}
   - {t: '`', s: '~'}
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -140,7 +140,7 @@ layers:
   - {t: '$$mdi:apple-keyboard-shift$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:apple-keyboard-option$$', h: '$$mdi:gesture-tap-hold$$'}
-  - {t: RGUI, h: '$$mdi:gesture-tap-hold$$'}
+  - {t: '''', s: '"'}
   - '~'
   - '!'
   - '@'
@@ -237,7 +237,7 @@ layers:
   - Ctl+Gui+$$mdi:arrow-left-bold$$
   - {type: held alternate}
   - {t: 'Gui+,', s: Gui+<, type: held}
-  - {t: Gui+0, s: Gui+)}
+  - {t: Gui+0, s: Gui+), type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-shift$$
   QWERT_OSM:
