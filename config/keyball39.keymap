@@ -58,6 +58,27 @@
     combos {
         compatible = "zmk,combos";
 
+        // Universal escape
+        combo_esc {
+            timeout-ms = <40>;
+            key-positions = <7 8>;
+            bindings = <&kp ESC>;
+        };
+
+        // Quick tab access
+        combo_tab {
+            timeout-ms = <40>;
+            key-positions = <0 1>;
+            bindings = <&kp TAB>;
+        };
+
+        // Quick delete
+        combo_del {
+            timeout-ms = <40>;
+            key-positions = <17 18>;
+            bindings = <&kp DEL>;
+        };
+
 
         // Programming brackets
         combo_lbkt {
