@@ -636,8 +636,8 @@ combos:
 - p: [0, 9]
   k: {t: base, h: toggle}
 - p: [26, 27]
-  k: '&mkp MB1'
+  k: $$mdi:mouse-left-click-outline$$
 - p: [27, 28]
-  k: '&mkp MB2'
+  k: $$mdi:mouse-right-click-outline$$
 - p: [26, 27, 28]
-  k: '&mkp MB3'
+  k: $$mdi:mouse-scroll-wheel$$
