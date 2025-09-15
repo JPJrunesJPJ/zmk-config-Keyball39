@@ -27,6 +27,9 @@
 #define FUNX        12
 #define FUNX_OSM    13
 #define ADJ         14
+#define MOUSE       15
+#define SCROLL      16
+#define SNIPE       17
 
 // Enhanced behavior configurations
 &lt {
