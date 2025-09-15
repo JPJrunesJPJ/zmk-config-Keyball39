@@ -658,7 +658,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - PgDn
   - Ctl+Gui+$$mdi:arrow-left-bold$$
-  - {t: 'Ctl+Gui+$$mdi:arrow-down-bold$$', type: held alternate}
+  - Ctl+Gui+$$mdi:arrow-down-bold$$
   - Ctl+Gui+$$mdi:arrow-right-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -721,23 +721,23 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
 combos:
-- p: [13, 14]
+- p: [7, 8]
   k: $$mdi:keyboard-esc$$
 - p: [0, 1]
   k: $$mdi:keyboard-tab$$
-- p: [7, 8]
-  k: $$mdi:backspace-reverse-outline$$
-- p: [1, 2]
-  k: {h: '[', s: '{'}
-- p: [2, 3]
-  k: {h: ']', s: '}'}
-- p: [16, 17]
-  k: '{'
 - p: [17, 18]
+  k: $$mdi:backspace-reverse-outline$$
+- p: [3, 4]
+  k: {h: '[', s: '{'}
+- p: [5, 6]
+  k: {h: ']', s: '}'}
+- p: [13, 14]
+  k: '{'
+- p: [15, 16]
   k: '}'
-- p: [1, 16]
+- p: [0, 1]
   k: Alt+$$mdi:keyboard-tab$$
-- p: [1, 26]
+- p: [1, 2]
   k: Alt+Sft+$$mdi:keyboard-tab$$
 - p: [26, 27]
   k: Gui+$$mdi:arrow-left-bold$$
@@ -761,7 +761,7 @@ combos:
   k: $$mdi:mouse-right-click-outline$$
 - p: [26, 27, 28]
   k: $$mdi:mouse-scroll-wheel$$
-- p: [26, 17, 28]
+- p: [26, 27, 28]
   k: SCROLL
 - p: [26, 27, 28, 29]
   k: SCROLL
