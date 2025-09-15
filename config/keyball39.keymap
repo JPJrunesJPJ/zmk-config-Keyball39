@@ -57,65 +57,43 @@
 / {
     combos {
         compatible = "zmk,combos";
-        
-        // Universal escape
-        combo_esc {
-            timeout-ms = <40>;
-            key-positions = <13 14>;
-            bindings = <&kp ESC>;
-        };
-
-        // Quick tab access
-        combo_tab {
-            timeout-ms = <40>;
-            key-positions = <0 1>;
-            bindings = <&kp TAB>;
-        };
-
-        // Quick delete
-        combo_del {
-            timeout-ms = <40>;
-            key-positions = <7 8>;
-            bindings = <&kp DEL>;
-        };
-
 
 
         // Programming brackets
         combo_lbkt {
             timeout-ms = <30>;
-            key-positions = <1 2>;
+            key-positions = <3 4>;
             bindings = <&kp LBKT>;
         };
 
         combo_rbkt {
             timeout-ms = <30>;
-            key-positions = <2 3>;
+            _key-positions = <5 6>;
             bindings = <&kp RBKT>;
         };
 
         combo_lbrc {
             timeout-ms = <30>;
-            key-positions = <16 17>;
+            key-positions = <13 14>;
             bindings = <&kp LBRC>;
         };
 
         combo_rbrc {
             timeout-ms = <30>;
-            key-positions = <17 18>;
+            key-positions = <15 16>;
             bindings = <&kp RBRC>;
         };
 
         // Alt+Tab shortcuts
         combo_alt_tab {
             timeout-ms = <40>;
-            key-positions = <1 16>;
+            key-positions = <0 1>;
             bindings = <&kp LA(TAB)>;
         };
 
         combo_alt_shift_tab {
             timeout-ms = <40>;
-            key-positions = <1 26>;
+            key-positions = <1 2>;
             bindings = <&kp LA(LS(TAB))>;
         };
 
