@@ -635,9 +635,9 @@ combos:
   k: adj
 - p: [0, 9]
   k: {t: base, h: toggle}
-- p: [25, 26]
-  k: $$mdi:mouse-left-click-outline$$
 - p: [26, 27]
+  k: $$mdi:mouse-left-click-outline$$
+- p: [27, 28]
   k: $$mdi:mouse-right-click-outline$$
-- p: [25, 26, 27]
+- p: [26, 27, 28]
   k: $$mdi:mouse-scroll-wheel$$
