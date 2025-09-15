@@ -658,7 +658,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - PgDn
   - Ctl+Gui+$$mdi:arrow-left-bold$$
-  - Ctl+Gui+$$mdi:arrow-down-bold$$
+  - {t: 'Ctl+Gui+$$mdi:arrow-down-bold$$', type: held alternate}
   - Ctl+Gui+$$mdi:arrow-right-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -667,10 +667,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
+  - {type: held alternate}
+  - {type: held alternate}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -761,3 +761,7 @@ combos:
   k: $$mdi:mouse-right-click-outline$$
 - p: [26, 27, 28]
   k: $$mdi:mouse-scroll-wheel$$
+- p: [26, 17, 28]
+  k: SCROLL
+- p: [26, 27, 28, 29]
+  k: SCROLL
