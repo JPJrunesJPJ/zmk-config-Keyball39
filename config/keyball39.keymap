@@ -33,16 +33,16 @@
 
 // Enhanced behavior configurations
 &lt {
-    tapping-term-ms = <100>;
+    tapping-term-ms = <150>;
     flavor = "balanced";
-    quick-tap-ms = <100>;
+    quick-tap-ms = <150>
     global-quick-tap;
 };
 
 &mt {
-    tapping-term-ms = <100>;
+    tapping-term-ms = <150>;
     flavor = "balanced";
-    quick-tap-ms = <100>;
+    quick-tap-ms = <150>;
     global-quick-tap;
     retro-tap;
 };
