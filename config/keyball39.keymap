@@ -89,7 +89,7 @@
 
         combo_rbkt {
             timeout-ms = <30>;
-            _key-positions = <5 6>;
+            key-positions = <5 6>;
             bindings = <&kp RBKT>;
         };
 
@@ -184,7 +184,7 @@
                 // Adjustment layer
         combo_scroll {
             timeout-ms = <50>;
-            key-positions = <26 17 28>;
+            key-positions = <26 27 28>;
             bindings = <&mo SCROLL>;
         };
                         // Adjustment layer
