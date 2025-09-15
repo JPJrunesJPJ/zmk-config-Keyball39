@@ -67,7 +67,7 @@ layers:
   - Ctl+V
   - Ctl+F
   - INS
-  - CMENU
+  - MENU
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
@@ -307,7 +307,7 @@ layers:
   - Ctl+V
   - Ctl+F
   - INS
-  - CMENU
+  - MENU
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
@@ -607,6 +607,8 @@ combos:
   k: $$mdi:keyboard-tab$$
 - p: [7, 8]
   k: $$mdi:backspace-reverse-outline$$
+- p: [18, 13]
+  k: $$mdi:alpha-w-box$$
 - p: [1, 2]
   k: {h: '[', s: '{'}
 - p: [2, 3]
@@ -635,9 +637,3 @@ combos:
   k: adj
 - p: [0, 9]
   k: {t: base, h: toggle}
-- p: [26, 27]
-  k: $$mdi:mouse-left-click-outline$$
-- p: [27, 28]
-  k: $$mdi:mouse-right-click-outline$$
-- p: [26, 27, 28]
-  k: $$mdi:mouse-scroll-wheel$$
