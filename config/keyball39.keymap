@@ -178,6 +178,7 @@
             key-positions = <26 27 28>;  // N+M+,
             bindings = <&mkp MCLK>;
         };
+
     };
 
     macros {
@@ -256,33 +257,37 @@
 
         // Base layer with home row mods
         base_layer {
+            label = "QWERT";
             bindings = <
 &kp Q           &kp W           &kp E            &kp R             &kp T                                    &kp Y         &kp U             &kp I            &kp O           &kp P
 &mt LGUI A      &mt LALT S      &mt LCTRL D      &mt LSHFT F       &kp G                                    &kp H         &mt RSHFT J       &mt RCTRL K      &mt RALT L      &mt RGUI SEMI
 &kp Z           &kp X           &kp C            &kp V             &kp B                                    &kp N         &kp M             &kp COMMA        &kp DOT         &kp FSLH
-&kp LCTRL       &kp LGUI        &kp LALT         &lt NUM ESC       &lt NAV SPACE        &kp TAB             &kp RET       &lt SYM BSPC                                   &sl FUN
+&kp LCTRL       &kp LGUI        &kp LALT         &lt NAV TAB       &lt NAV SPACE       &lt SYM RET          &kp DEL       &lt SYM BSPC                                   &sl FUN
             >;
         };
 
         nav_layer {
+            label = "NAV";
             bindings = <
 &kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)                                &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
 &sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)                                &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
-&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)                                &kp INS       &kp K_CMENU          &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
-&kp LCTRL       &kp LGUI        &kp LALT         &trans            &trans               &sl WIN             &trans        &trans                                         &kp RSHFT
+&kp LC(Z)       &kp LC(X)       &kp LC(C)        &kp LC(V)         &kp LC(F)                                &kp INS       &kp K_CMENU       &kp PSCRN        &kp SCROLLLOCK  &kp BSLH
+&kp LCTRL       &kp LGUI        &kp LALT         &trans            &trans               &sl WIN             &trans        &trans                                             &kp RSHFT
             >;
         };
 
         num_layer {
+            label = "NUM";
             bindings = <
 &kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT                                 &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
 &kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL                                &kp F11       &kp F4            &kp F5           &kp F6          &kp SCROLLLOCK
 &kp GRAVE       &kp N1          &kp N2           &kp N3            &kp BSLH                                 &kp F10       &kp F1            &kp F2           &kp F3          &kp PAUSE_BREAK
-&kp LCTRL       &kp LGUI        &kp LALT         &trans            &kp N0               &kp MINUS           &trans        &kp DOT                                        &kp RSHFT
+&kp LCTRL       &kp DOT        &kp N0           &trans            &trans               & trans              &trans        &trans                                             &kp RSHFT
             >;
         };
 
         sym_layer {
+            label = "SYM";
             bindings = <
 &kp LBRC        &kp AMPERSAND   &kp ASTERISK     &kp LPAR          &kp RBRC                                 &kp EQUAL     &kp UNDERSCORE    &kp PLUS         &kp PIPE2       &kp TILDE
 &kp DQT         &kp DLLR        &kp PRCNT        &kp CARET         &kp PLUS                                 &trans        &sk RSHFT         &sk RCTRL        &sk RALT        &sk RGUI
@@ -292,6 +297,7 @@
         };
 
         fun_layer {
+            label = "FUN";
             bindings = <
 &kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN                                &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX
 &kp F11         &kp F4          &kp F5           &kp F6            &kp SLCK                                 &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
@@ -301,6 +307,7 @@
         };
 
         win_layer {
+            label = "WIN";
             bindings = <
 &kp LG(TAB)     &kp LA(TAB)     &kp LC(LA(TAB))  &kp LC(LG(RIGHT)) &kp LC(LG(D))                            &kp LA(LS(TAB)) &kp LG(N7)      &kp LG(N8)       &kp LG(N9)      &kp LG(L)
 &kp LG(LEFT)    &kp LG(DOWN)    &kp LG(UP)       &kp LG(RIGHT)     &kp LG(D)                                &kp LG(Z)     &kp LG(N4)        &kp LG(N5)       &kp LG(N6)      &kp LG(I)
@@ -310,15 +317,17 @@
         };
 
         base_osm_layer {
+            label = "QWERT_OSM";
             bindings = <
 &kp Q           &kp W           &kp E            &kp R             &kp T                                    &kp Y         &kp U             &kp I            &kp O           &kp P
 &kp A           &kp S           &kp D            &kp F             &kp G                                    &kp H         &kp J             &kp K            &kp L           &kp SEMI
 &kp Z           &kp X           &kp C            &kp V             &kp B                                    &kp N         &kp M             &kp COMMA        &kp DOT         &kp FSLH
-&sk LCTRL       &sk LGUI        &sk LALT         &lt NUM_OSM ESC   &lt NAV_OSM SPACE    &kp TAB             &kp RET       &lt SYM_OSM BSPC                               &sk RSHFT
+&sk LCTRL       &sk LGUI        &sk LALT         &lt NAV_OSM TAB   &lt NUM_OSM SPACE    &lt SYM_OSM RET     &kp DEL       &lt SYM_OSM BSPC                               &sk RSHFT
             >;
         };
 
         nav_osm_layer {
+            label = "NAV_OSM";
             bindings = <
 &kp ESC         &kp TAB         &kp LC(T)        &kp LC(W)         &kp LC(R)                                &kp PG_UP     &kp HOME          &kp UP           &kp END         &kp DEL
 &sk LGUI        &sk LALT        &sk LCTRL        &sk LSHFT         &kp LC(G)                                &kp PG_DN     &kp LEFT          &kp DOWN         &kp RIGHT       &kp SQT
@@ -328,6 +337,7 @@
         };
 
         num_osm_layer {
+            label = "NUM_OSM";
             bindings = <
 &kp LBKT        &kp N7          &kp N8           &kp N9            &kp RBKT                                 &kp F12       &kp F7            &kp F8           &kp F9          &kp PSCRN
 &kp SQT         &kp N4          &kp N5           &kp N6            &kp EQUAL                                &kp F11       &kp F4            &kp F5           &kp F6          &kp SCROLLLOCK
@@ -337,6 +347,7 @@
         };
 
         sym_osm_layer {
+            label = "SYM_OSM";
             bindings = <
 &kp LBRC        &kp AMPERSAND   &kp ASTERISK     &kp LPAR          &kp RBRC                                 &kp EQUAL     &kp UNDERSCORE    &kp PLUS         &kp PIPE2       &kp TILDE
 &kp DOUBLE_QUOTES &kp DOLLAR    &kp PERCENT      &kp CARET         &kp PLUS                                 &trans        &sk RSHFT         &sk RCTRL        &sk RALT        &sk RGUI
@@ -346,6 +357,7 @@
         };
 
         fun_osm_layer {
+            label = "FUN_OSM";
             bindings = <
 &kp F12         &kp F7          &kp F8           &kp F9            &kp PSCRN                                &kp C_BRI_UP  &kp C_VOL_UP      &kp C_NEXT       &trans          &sl FUNX_OSM
 &kp F11         &kp F4          &kp F5           &kp F6            &kp SCROLLLOCK                           &kp C_BRI_DN  &kp C_VOL_DN      &kp C_PREV       &kp C_PP        &trans
@@ -355,6 +367,7 @@
         };
 
         win_osm_layer {
+            label = "WIN_OSM";
             bindings = <
 &kp LG(TAB)     &kp LA(TAB)     &kp LC(LA(TAB))  &kp LC(LG(RIGHT)) &kp LC(LG(D))                            &kp LA(LS(TAB)) &kp LG(N7)      &kp LG(N8)       &kp LG(N9)      &kp LG(L)
 &kp LG(LEFT)    &kp LG(DOWN)    &kp LG(UP)       &kp LG(RIGHT)     &kp LG(D)                                &kp LG(Z)     &kp LG(N4)        &kp LG(N5)       &kp LG(N6)      &kp LG(I)
@@ -364,6 +377,7 @@
         };
 
         funx_layer {
+            label = "FUNX";
             bindings = <
 &kp F24         &kp F19         &kp F20          &kp F21           &kp F22                                  &kp F23       &kp LC(LS(M))     &kp C_PP         &kp LC(LS(M))   &kp F13
 &kp F18         &kp F15         &kp F16          &kp F17           &kp F18                                  &kp F19       &kp F20           &kp F21          &kp LC(LS(D))   &kp F14
@@ -373,6 +387,7 @@
         };
 
         funx_osm_layer {
+            label = "FUNX_OSM";
             bindings = <
 &kp F24         &kp F19         &kp F20          &kp F21           &kp F22                                  &kp F23       &kp LC(LS(M))     &kp C_PP         &kp LC(LS(M))   &kp F13
 &kp F18         &kp F15         &kp F16          &kp F17           &kp F18                                  &kp F19       &kp F20           &kp F21          &kp LC(LS(D))   &kp F14
@@ -382,6 +397,7 @@
         };
 
         adj_layer {
+            label = "ADJ";
             bindings = <
 &bootloader     &trans          &trans           &trans            &to BASE                                 &to BASE_OSM  &trans            &trans           &trans          &bootloader
 &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2      &bt BT_SEL 3                             &kp C_BRI_DN  &kp C_BRI_UP      &kp C_VOL_DN     &kp C_VOL_UP    &kp C_MUTE
