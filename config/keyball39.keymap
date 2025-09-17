@@ -175,19 +175,19 @@
 
         // Mouse click combos
         combo_left_click {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <26 27>;  // N+M
             bindings = <&mkp LCLK>;
         };
 
         combo_right_click {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <27 28>;  // M+,
             bindings = <&mkp RCLK>;
         };
 
         combo_middle_click {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <26 27 28>;  // N+M+,
             bindings = <&mkp MCLK>;
         };
@@ -208,19 +208,19 @@
 
         // Mouse click combos
         combo_left_clickL {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <22 23>;  // N+M
             bindings = <&mkp LCLK>;
         };
 
         combo_right_clickL {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <21 22>;  // M+,
             bindings = <&mkp RCLK>;
         };
 
         combo_middle_clickL {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <21 22 23>;  // N+M+,
             bindings = <&mkp MCLK>;
         };
