@@ -98,7 +98,7 @@
             key-positions = <13 14>;
             bindings = <&kp LBRC>;
         };
-pqiqq        combo_rbrc {
+        combo_rbrc {
             timeout-ms = <30>;
             key-positions = <15 16>;
             bindings = <&kp RBRC>;
