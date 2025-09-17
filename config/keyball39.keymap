@@ -53,7 +53,6 @@
 };
 
 
-
 / {
     combos {
         compatible = "zmk,combos";
@@ -194,13 +193,13 @@
 
                 // Adjustment layer
         combo_scroll {
-            timeout-ms = <150>;
+            timeout-ms = <50>;
             key-positions = <26 17 28>;
             bindings = <&mo SCROLL>;
         };
                         // Adjustment layer
         combo_snipe {
-            timeout-ms = <150>;
+            timeout-ms = <50>;
             key-positions = <26 27 28 29>;
             bindings = <&mo SNIPE>;
         };
@@ -227,13 +226,13 @@
 
                 // Adjustment layer
         combo_scrollL {
-            timeout-ms = <150>;
+            timeout-ms = <50>;
             key-positions = <21 12 23>;
             bindings = <&mo SCROLL>;
         };
                         // Adjustment layer
         combo_snipeL {
-            timeout-ms = <150>;
+            timeout-ms = <50>;
             key-positions = <21 22 23 24>;
             bindings = <&mo SNIPE>;
         };
