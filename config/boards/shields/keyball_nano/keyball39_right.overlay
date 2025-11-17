@@ -6,7 +6,6 @@
 
 
 #include "keyball39.dtsi"
-#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -62,23 +61,4 @@
     };
 };
 
-/ {
-  trackball_listener: trackball_listener {
-    compatible = "zmk,input-listener";
-    device = <&trackball>;
-    
-    // Base input processors - always active
-    input-processors = <&zip_temp_layer 15 250 250>;
-    
-    // Layer-specific overrides
-    snipe {
-      layers = <17>;
-      input-processors = <&zip_xy_scaler 1 2>;  // Half speed for precision
-    };
-    
-    scroll {
-      layers = <16>;
-      input-processors = <&zip_xy_to_scroll_mapper>;
-    };
-  };
-};
+
