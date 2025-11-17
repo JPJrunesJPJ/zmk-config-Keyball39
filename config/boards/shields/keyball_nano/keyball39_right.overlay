@@ -68,3 +68,13 @@
 
   };
 };
+
+&mmv {
+  acceleration-exponent = <3>;
+  time-to-max-speed-ms = <300>;
+};
+
+&msc {
+  acceleration-exponent = <3>;
+  time-to-max-speed-ms = <300>;
+};

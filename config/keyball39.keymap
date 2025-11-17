@@ -31,10 +31,6 @@
 #define SCROLL      16
 #define SNIPE       17
 
-&mmv {
-  acceleration-exponent = <3>;      // Increase from default of 1
-  time-to-max-speed-ms = <300>;     // Reach max speed faster (default)
-};
 
 
 // Enhanced behavior configurations
