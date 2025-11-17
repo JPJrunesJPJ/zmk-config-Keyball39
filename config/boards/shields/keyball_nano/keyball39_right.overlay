@@ -3,8 +3,10 @@
  *
  * SPDX-License-Identifier: MIT
  */
- 
+
+
 #include "keyball39.dtsi"
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
