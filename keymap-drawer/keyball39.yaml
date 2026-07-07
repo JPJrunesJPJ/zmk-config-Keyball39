@@ -31,7 +31,7 @@ layers:
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:keyboard-esc$$', h: FUN}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:keyboard-tab$$', h: SYM}
@@ -39,7 +39,7 @@ layers:
   - {t: '$$mdi:keyboard-return$$', h: SCROLL}
   - {t: '$$mdi:backspace-reverse-outline$$', h: NAV}
   - {t: '$$mdi:backspace$$', h: SYM}
-  - {t: '$$mdi:keyboard-esc$$', h: FUN}
+  - $$mdi:mouse-left-click-outline$$
   NAV:
   - $$mdi:keyboard-esc$$
   - $$mdi:keyboard-tab$$
@@ -71,7 +71,7 @@ layers:
   - $$mdi:printer-outline$$
   - SCROLLLOCK
   - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -79,7 +79,7 @@ layers:
   - {t: WIN, h: '$$mdi:gesture-tap-hold$$'}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:transfer$$', type: trans}
   NUM:
   - {t: '[', s: '{'}
   - {t: '7', s: '&'}
@@ -111,7 +111,7 @@ layers:
   - F2
   - F3
   - PAUSE BREAK
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: ., s: '>'}
   - {t: '0', s: )}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -119,7 +119,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:transfer$$', type: trans}
   SYM:
   - '{'
   - '&'
@@ -151,7 +151,7 @@ layers:
   - {t: '=', s: +}
   - ':'
   - '?'
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - {t: (, type: held}
@@ -159,7 +159,7 @@ layers:
   - )
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held alternate}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:transfer$$', type: trans}
   FUN:
   - F12
   - F7
@@ -191,7 +191,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:apple-keyboard-control$$
+  - {type: held}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:keyboard-space$$
@@ -199,7 +199,7 @@ layers:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:backspace-reverse-outline$$
-  - {t: '$$mdi:apple-keyboard-shift$$', type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   WIN:
   - Gui+$$mdi:keyboard-tab$$
   - Alt+$$mdi:keyboard-tab$$
@@ -231,7 +231,7 @@ layers:
   - {t: Gui+2, s: Gui+@}
   - {t: Gui+3, s: Gui+#}
   - {t: Gui+;, s: 'Gui+:'}
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - Ctl+Gui+$$mdi:arrow-left-bold$$
@@ -239,7 +239,7 @@ layers:
   - {t: 'Gui+,', s: Gui+<, type: held}
   - {t: Gui+0, s: Gui+), type: held}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:transfer$$', type: trans}
   QWERT_OSM:
   - Q
   - W
@@ -511,7 +511,7 @@ layers:
   - F20
   - F21
   - F22
-  - $$mdi:apple-keyboard-control$$
+  - {type: held}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -519,7 +519,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:apple-keyboard-shift$$', type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   FUNX_OSM:
   - F24
   - F19
